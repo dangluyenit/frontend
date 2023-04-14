@@ -3,7 +3,6 @@ import images from "../Login/images/image.gif";
 
 export const Body = styled.div`
   display: flex;
-  background-color: #f6f5f7;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -66,11 +65,12 @@ export const Form = styled.div`
   text-align: center;
 `;
 export const Title = styled.h2`
+  color: inherit;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 45px;
   margin: 0;
-  text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 15px;
 `;
 export const Input = styled.input`

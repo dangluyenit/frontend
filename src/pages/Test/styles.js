@@ -96,6 +96,7 @@ export const AnswerQuestion = styled.div`
 `;
 
 export const Button = styled.button`
+  color: ${({ theme }) => theme.button};
   margin-left: 45px;
   background: none;
   border: none;
@@ -112,21 +113,22 @@ export const Button = styled.button`
 `;
 
 export const ButtonPre = styled.button`
-  width: 10%;
-  height: 10%;
+  width: 5%;
+  height: 5%;
   position: absolute;
-  margin-top: 25%;
-  margin-right: 25%;
+  margin-top: 10%;
+  margin-right: 45%;
   background-color: transparent;
   border-radius: 15px;
   cursor: pointer;
 `;
 
 export const ButtonNext = styled.button`
-  width: 10%;
-  height: 10%;
+  width: 5%;
+  height: 5%;
   position: absolute;
-  margin-top: 25%;
+  margin-top: 10%;
+  margin-left: 45%;
   background-color: transparent;
   border-radius: 15px;
   cursor: pointer;

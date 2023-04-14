@@ -12,6 +12,7 @@ import Info from "./pages/Info/Info";
 import Login from "./pages/Login/Login";
 import CourseDetails from "./pages/Course/CourseDetails";
 import TestDetails from "./pages/Test/TestDetails";
+import AddCourse from "./pages/Course/AddCourse";
 
 export const ThemeContext = React.createContext(null);
 
@@ -41,6 +42,7 @@ const App = () => {
               <Route exact path="/login" Component={Login}></Route>
               <Route exact path="/course/details" Component={CourseDetails} />
               <Route exact path="/test/details" Component={TestDetails} />
+              <Route exact path="/course/add" Component={AddCourse} />
             </Routes>
           </Layout>
         </>

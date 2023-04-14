@@ -8,6 +8,7 @@ const Course = (props) => {
 
   return (
     <Container>
+      <Title>Khoá học</Title>
       <Card onClick={() => navigate("/course/details")}>
         <Image>
           <Title>Lập trình hướng đối tượng</Title>
@@ -29,7 +30,7 @@ const Course = (props) => {
         </Image>
       </Card>
       <Card>
-        <Button>
+        <Button onClick={() => navigate("/course/add")}>
           <BiMessageSquareAdd className="icon-btn" />
         </Button>
       </Card>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardBody,
   CardHeader,
@@ -6,15 +6,19 @@ import {
   LeftInfo,
   RightInfo,
   Table,
+  Button,
 } from "./styles";
 import { BsCalendarDate } from "react-icons/bs";
 import { TbGenderBigender } from "react-icons/tb";
 import { FaAddressBook } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { BiPhone } from "react-icons/bi";
+import { BiPhone, BiEditAlt } from "react-icons/bi";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import ModalEdit from "./ModalEdit";
 
 const Info = () => {
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
   return (
     <Container>
       <LeftInfo>
@@ -87,7 +91,12 @@ const Info = () => {
             </tr>
           </Table>
         </CardBody>
+        <Button onClick={() => setShowModal(true)}>
+          Chỉnh sửa
+          <BiEditAlt />
+        </Button>
       </RightInfo>
+      <ModalEdit onClose={handleClose} visible={showModal} />
     </Container>
   );
 };

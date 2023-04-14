@@ -37,19 +37,19 @@ const TestDetails = () => {
     },
     {
       id: 2,
-      question: "Javascript là ngôn ngữ xử lý ở:",
+      question: "Phương thức viết chương trình của Javascript như thế nào:",
       answer: [
         {
-          answerText: "Client",
+          answerText: "Viết riêng một trang",
           isCorrect: false,
         },
         {
-          answerText: "Server",
+          answerText: "Viết chung với HTML",
           isCorrect: false,
         },
         {
-          answerText: "Server/Client",
-          isCorrect: false,
+          answerText: "Cả 2 dạng A và B",
+          isCorrect: true,
         },
         {
           answerText: "Không có dạng nào",

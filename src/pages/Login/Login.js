@@ -50,7 +50,7 @@ const Login = () => {
                 type="text"
                 name="username"
                 id="usernameId"
-                placeholder="Tên người dùng"
+                placeholder="Mã sinh viên"
               />
               <Input
                 type="email"
@@ -63,6 +63,12 @@ const Login = () => {
                 name="password"
                 id="passwordId"
                 placeholder="Mật khẩu"
+              />
+              <Input
+                type="password"
+                name="password"
+                id="passwordId"
+                placeholder="Nhập lại mật khẩu"
               />
               <Links href="#">Đã có tài khoản?</Links>
               <Button>Đăng ký</Button>
