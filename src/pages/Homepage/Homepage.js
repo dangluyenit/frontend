@@ -3,6 +3,7 @@ import "./slide.css";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
 const Container = styled.div`
   display: flex;
   height: 70vh;
@@ -38,8 +39,10 @@ const variants = {
     transition: "ease-in",
   },
 };
+
 const Homepage = () => {
   const [index, setIndex] = useState(0);
+
   function nextStep() {
     if (index === images.length - 1) {
       setIndex(0);
@@ -54,6 +57,7 @@ const Homepage = () => {
     }
     setIndex(index - 1);
   }
+
   return (
     <Container>
       <div className="inner-carousel">
@@ -70,7 +74,6 @@ const Homepage = () => {
           />
         </AnimatePresence>
       </div>
-
       <button className="prevButton" onClick={prevStep}>
         <BsArrowLeftCircle />
       </button>

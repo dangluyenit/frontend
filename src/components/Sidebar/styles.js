@@ -6,7 +6,7 @@ import { btnReset, v } from "../../styles/variables";
 export const SSidebar = styled.div`
   width: ${({ isOpen }) => (!isOpen ? `auto` : v.sidebarWidth)};
   background: ${({ theme }) => theme.bg};
-  height: 100vh;
+  height: full;
   padding: ${v.lgSpacing};
   position: relative;
 `;
@@ -27,6 +27,7 @@ export const SSidebarButton = styled.button`
   justify-content: center;
   cursor: pointer;
   transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
+  transition: all 1s ease;
 `;
 
 export const SLogo = styled.div`
@@ -67,6 +68,24 @@ export const SSearchIcon = styled.button`
   }
 `;
 
+export const SBtLogin = styled.div`
+  cursor: pointer;
+  width: max-content;
+  padding: ${v.smSpacing} ${v.mdSpacing};
+  display: flex;
+  svg {
+    font-size: 20px;
+  }
+`;
+export const SBtLogout = styled.div`
+  cursor: pointer;
+  width: max-content;
+  padding: ${v.smSpacing} ${v.mdSpacing};
+  display: flex;
+  svg {
+    font-size: 20px;
+  }
+`;
 export const SDivider = styled.div`
   height: 2px;
   width: 100%;

@@ -54,7 +54,7 @@ export const RegisterContainer = styled.div`
   z-index: 1;
   ${(props) => (props.clicked !== true ? `transform: translateX(120%);` : null)}
 `;
-export const Form = styled.div`
+export const Form = styled.form`
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -65,7 +65,7 @@ export const Form = styled.div`
   text-align: center;
 `;
 export const Title = styled.h2`
-  color: inherit;
+  color: black;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 45px;

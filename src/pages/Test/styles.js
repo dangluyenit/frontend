@@ -13,27 +13,26 @@ export const Card = styled.div`
   margin-top: 100px;
   background: transparent;
   border-radius: 20px;
+  cursor: pointer;
 `;
 export const Title = styled.h2`
   width: 100%;
   height: 100%;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  cursor: pointer;
+  color: ${({ theme }) => theme.text};
 `;
 export const Image = styled.div`
   width: 250px;
   height: 25vh;
+  border: 10px solid white;
   border-radius: 30px;
   background: linear-gradient(to left, #9966cc, #ff6633) right;
   :hover {
-    border: 2px solid black;
     transform: scale(1.05);
-    border-radius: 30px;
-    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
   }
   :active {
     transform: scale(0.95) rotateZ(1.7deg);
@@ -48,8 +47,8 @@ export const Question = styled.div`
   box-shadow: 10px 10px 42px 0px rgba(63, 59, 59, 0.75);
   display: flex;
   justify-content: space-evenly;
-  margin-left: 25vw;
-  margin-top: 15vw;
+  margin-left: 20vw;
+  margin-top: 10vw;
 `;
 export const ScoreSection = styled.div`
   display: flex;
@@ -87,7 +86,10 @@ export const AnswerQuestion = styled.div`
     align-items: center;
     border: 5px solid #234668;
     cursor: pointer;
-    :hover {
+    :focus {
+      background-color: #00ff00;
+      color: black;
+      font-style: inherit;
     }
     :active {
       transform: scale(0.95) rotateZ(1.7deg);
@@ -113,23 +115,57 @@ export const Button = styled.button`
 `;
 
 export const ButtonPre = styled.button`
-  width: 5%;
-  height: 5%;
+  color: ${({ theme }) => theme.button};
+  width: max-content;
+  height: min-content;
   position: absolute;
   margin-top: 10%;
   margin-right: 45%;
   background-color: transparent;
+  border: 1px solid black;
   border-radius: 15px;
   cursor: pointer;
+
+  &:disabled {
+    pointer-events: none;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #1a1a1a;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  &:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
 `;
 
 export const ButtonNext = styled.button`
-  width: 5%;
-  height: 5%;
+  color: ${({ theme }) => theme.button};
+  width: max-content;
+  height: min-content;
   position: absolute;
   margin-top: 10%;
-  margin-left: 45%;
+  margin-left: 75%;
   background-color: transparent;
+  border: 1px solid black;
   border-radius: 15px;
   cursor: pointer;
+  &:disabled {
+    pointer-events: none;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #1a1a1a;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+    .icon-next {
+      color: #fff;
+    }
+  }
+  &:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
 `;

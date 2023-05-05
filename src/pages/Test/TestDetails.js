@@ -10,7 +10,6 @@ import {
   QuestionText,
   ScoreSection,
 } from "./styles";
-import { GrNext, GrPrevious } from "react-icons/gr";
 const TestDetails = () => {
   var questionBank = [
     {
@@ -109,20 +108,22 @@ const TestDetails = () => {
     if (isCorrect) {
       setScore(score + 1);
     }
+  };
+  const handlePreOption = () => {
+    const preQuestion = currentQuestion - 1;
+    if (preQuestion === -1) {
+      setShowScore(true);
+    } else {
+      setCurrentQuestion(preQuestion);
+    }
+  };
+  const handleNextOption = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questionBank.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
     }
-  };
-  const handleNextOption = () => {
-    const nextQuestion = currentQuestion + 1;
-    setCurrentQuestion(nextQuestion);
-  };
-  const handlePreOption = () => {
-    const preQuestion = currentQuestion - 1;
-    setCurrentQuestion(preQuestion);
   };
   return (
     <Container>
@@ -134,7 +135,7 @@ const TestDetails = () => {
         ) : (
           <QuestionSection>
             <QuestionCount>
-              <span>{currentQuestion}</span>/{questionBank.length}
+              <span>{currentQuestion + 1}</span>/{questionBank.length}
             </QuestionCount>
             <QuestionText>
               {questionBank[currentQuestion].question}
@@ -149,14 +150,10 @@ const TestDetails = () => {
                 </button>
               ))}
             </AnswerQuestion>
+            <ButtonPre onClick={handlePreOption}>Trước</ButtonPre>
+            <ButtonNext onClick={handleNextOption}>Kế tiếp</ButtonNext>
           </QuestionSection>
         )}
-        <ButtonPre onClick={handlePreOption}>
-          <GrPrevious />
-        </ButtonPre>
-        <ButtonNext onClick={handleNextOption}>
-          <GrNext />
-        </ButtonNext>
       </Question>
     </Container>
   );

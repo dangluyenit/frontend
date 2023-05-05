@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
     body {
-        background: ${({ theme }) => theme.bg};
+        background: ${({ theme }) => theme.bg2};
         color: ${({ theme }) => theme.text};
         font-family: 'Poppins', sans-serif;
         letter-spacing: .6px;

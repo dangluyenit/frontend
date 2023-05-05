@@ -11,9 +11,9 @@ export const LeftInfo = styled.div`
   flex: 0 0 calc(40% - 20px);
   max-width: 0 0 calc(50% - 20px);
   width: 100%;
-  height: 60vh;
+  height: 50%;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 20px;
   margin-left: 50px;
   background: transparent;
   box-shadow: 0px 0px 30px 1px rgba(156, 156, 156);
@@ -25,7 +25,7 @@ export const RightInfo = styled.div`
   width: 100%;
   height: max-content;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 20px;
   background: transparent;
   border-radius: 20px;
   margin-left: 30px;
@@ -59,13 +59,35 @@ export const Table = styled.div`
 `;
 
 export const Button = styled.button`
-  color: ${({ theme }) => theme.text};
+  /* color: ${({ theme }) => theme.text};
   width: max-content;
   background: ${({ theme }) => theme.bg3};
   border: 1px solid black;
   border-radius: 20px;
   margin-top: 20px;
-  box-shadow: 0 0 10px #0f0c29;
+  box-shadow: 0 0 10px #0f0c29; */
+  border-radius: 20px;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 10px;
+  width: max-content;
+  padding: 12px 80px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  :hover {
+    letter-spacing: 2px;
+  }
+  :active {
+    transform: scale(0.95);
+  }
+  :focus {
+    outline: none;
+  }
 `;
 
 export const Modal = styled.div`
@@ -82,7 +104,7 @@ export const ModalInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  background: gray;
+  background: white;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
   width: 50%;
@@ -92,6 +114,7 @@ export const ModalInfo = styled.div`
     height: 40px;
     display: flex;
     flex-direction: row;
+    border-radius: 10px;
   }
 `;
 
@@ -109,22 +132,45 @@ export const Gender = styled.div`
 `;
 
 export const ButtonDone = styled.button`
-  color: ${({ theme }) => theme.text};
-  width: max-content;
-  height: max-content;
-  background: ${({ theme }) => theme.bg3};
-  border: 1px solid black;
   border-radius: 20px;
-  box-shadow: 0 0 10px #0f0c29;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  width: max-content;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  :hover {
+    letter-spacing: 2px;
+  }
+  :active {
+    transform: scale(0.95);
+  }
+  :focus {
+    outline: none;
+  }
 `;
 
 export const ButtonClose = styled.button`
-  color: ${({ theme }) => theme.text};
-  width: max-content;
-  height: max-content;
-  background: ${({ theme }) => theme.bg3};
-  border: 1px solid black;
+  transform: translate(570px, -66px);
   border-radius: 20px;
-  transform: translate(580px, -66px);
-  box-shadow: 0 0 10px #0f0c29;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  width: max-content;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  :hover {
+    letter-spacing: 2px;
+  }
+  :focus {
+    outline: none;
+  }
 `;

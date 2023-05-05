@@ -15,6 +15,7 @@ export const Card = styled.div`
   margin-top: 100px;
   background: transparent;
   border-radius: 20px;
+  cursor: pointer;
 `;
 
 export const Title = styled.h2`
@@ -25,18 +26,19 @@ export const Title = styled.h2`
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Image = styled.div`
   width: 250px;
   height: 25vh;
+  border: 10px solid white;
+  box-shadow: 1px 1px 20px #000;
   border-radius: 30px;
   background: linear-gradient(to left, #6666ff, #9933ff) right;
+
   :hover {
-    border: 2px solid black;
     transform: scale(1.05);
-    border-radius: 30px;
-    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
   }
   :active {
     transform: scale(0.95) rotateZ(1.7deg);

@@ -13,6 +13,9 @@ import Login from "./pages/Login/Login";
 import CourseDetails from "./pages/Course/CourseDetails";
 import TestDetails from "./pages/Test/TestDetails";
 import AddCourse from "./pages/Course/AddCourse";
+import AddTest from "./pages/Test/AddTest";
+import Admin from "./pages/Admin/Admin";
+import { privateRoutes, publicRoutes } from "./pages/routes";
 
 export const ThemeContext = React.createContext(null);
 
@@ -33,9 +36,8 @@ const App = () => {
           />
         </Helmet>
         <>
-          <Layout>
-            <Routes>
-              <Route exact path="/" Component={Homepage}></Route>
+          <Routes>
+            {/* <Route exact path="/" Component={Homepage}></Route>
               <Route exact path="/course" Component={Course}></Route>
               <Route exact path="/info" Component={Info}></Route>
               <Route exact path="/test" Component={Test}></Route>
@@ -43,8 +45,30 @@ const App = () => {
               <Route exact path="/course/details" Component={CourseDetails} />
               <Route exact path="/test/details" Component={TestDetails} />
               <Route exact path="/course/add" Component={AddCourse} />
-            </Routes>
-          </Layout>
+              <Route exact path="/test/add" Component={AddTest} /> */}
+            {publicRoutes.map((route, index) => {
+              const Page = route.component;
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              );
+            })}
+          </Routes>
+          <Routes>
+            {privateRoutes.map((route, index) => {
+              const Page2 = route.component;
+              return (
+                <Route key={index} path={route.path} element={<Page2 />} />
+              );
+            })}
+          </Routes>
         </>
       </ThemeProvider>
     </ThemeContext.Provider>

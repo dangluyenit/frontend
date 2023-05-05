@@ -6,6 +6,7 @@ const Test = (props) => {
   const navigate = useNavigate();
   return (
     <Container>
+      <Title>Bài thi</Title>
       <Card onClick={() => navigate("/test/details")}>
         <Image>
           <Title>Lập trình hướng đối tượng</Title>
@@ -27,7 +28,7 @@ const Test = (props) => {
         </Image>
       </Card>
       <Card>
-        <Button>
+        <Button onClick={() => navigate("/test/add")}>
           <BiMessageSquareAdd className="icon-btn" />
         </Button>
       </Card>

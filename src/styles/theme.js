@@ -1,7 +1,7 @@
 export const lightTheme = {
   bg: "rgb(255,255,255)",
   bgAlpha: "rgba(250,250,250,.3)",
-  bg2: "rgb(211,211,211)",
+  bg2: "rgb(238, 238, 224)",
   bg3: "rgb(230,230,230)",
   bg4: "rgb(0,0,0)",
   text: "rgb(45,45,45)",

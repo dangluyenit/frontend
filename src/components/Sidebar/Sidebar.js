@@ -1,11 +1,12 @@
 import React, { useContext, useRef, useState } from "react";
 import {
+  SBtLogin,
+  SBtLogout,
   SDivider,
   SLink,
   SLinkContainer,
   SLinkIcon,
   SLinkLabel,
-  SLinkNotification,
   SLogo,
   SSearch,
   SSearchIcon,
@@ -31,14 +32,14 @@ import {
 import { BsPeople } from "react-icons/bs";
 
 import { ThemeContext } from "./../../App";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const searchRef = useRef(null);
   const { theme, setTheme } = useContext(ThemeContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { pathname } = useLocation();
-
+  const navigate = useNavigate();
   const searchClickHandler = () => {
     if (!sidebarOpen) {
       setSidebarOpen(true);
@@ -75,30 +76,36 @@ const Sidebar = () => {
         />
       </SSearch>
       <SDivider />
-      {linksArray.map(({ icon, label, notification, to }) => (
+      {linksArray.map(({ icon, label, to }) => (
         <SLinkContainer key={label} isActive={pathname === to}>
           <SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
             <SLinkIcon>{icon}</SLinkIcon>
             {sidebarOpen && (
               <>
                 <SLinkLabel>{label}</SLinkLabel>
-                {!!notification && (
-                  <SLinkNotification>{notification}</SLinkNotification>
-                )}
               </>
             )}
           </SLink>
         </SLinkContainer>
       ))}
       <SDivider />
-      {secondaryLinksArray.map(({ icon, label, to }) => (
-        <SLinkContainer key={label} isActive={pathname === to}>
-          <SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
-            <SLinkIcon>{icon}</SLinkIcon>
-            {sidebarOpen && <SLinkLabel>{label}</SLinkLabel>}
-          </SLink>
-        </SLinkContainer>
-      ))}
+      {localStorage.getItem("token") ? (
+        <SBtLogout
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+        >
+          {sidebarOpen && <>Đăng xuất</>}
+          <AiOutlineLogout />
+        </SBtLogout>
+      ) : (
+        <SBtLogin onClick={() => navigate("/login")}>
+          {sidebarOpen && <>Đăng nhập</>}
+          <AiOutlineLogin />
+        </SBtLogin>
+      )}
+
       <SDivider />
       <STheme>
         {sidebarOpen && <SThemeLabel>Chế độ tối</SThemeLabel>}
@@ -118,37 +125,21 @@ const linksArray = [
     label: "Trang chủ",
     icon: <AiOutlineHome />,
     to: "/",
-    notification: 0,
   },
   {
     label: "Khoá học",
     icon: <AiOutlineFolderOpen />,
     to: "/course",
-    notification: 3,
   },
   {
     label: "Thông tin cá nhân",
     icon: <BsPeople />,
     to: "/info",
-    notification: 0,
   },
   {
     label: "Bài thi",
     icon: <AiOutlineFileText />,
     to: "/test",
-    notification: 1,
-  },
-];
-
-const secondaryLinksArray = [
-  {
-    label: "Đăng nhập/Đăng ký",
-    icon: <AiOutlineLogin />,
-    to: "/login",
-  },
-  {
-    label: "Đăng xuất",
-    icon: <AiOutlineLogout />,
   },
 ];
 
