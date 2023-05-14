@@ -29,7 +29,7 @@ import {
   AiOutlineLogin,
   AiOutlineLogout,
 } from "react-icons/ai";
-import { BsPeople } from "react-icons/bs";
+import { BsCalendar2EventFill, BsPeople } from "react-icons/bs";
 
 import { ThemeContext } from "./../../App";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -140,6 +140,11 @@ const linksArray = [
     label: "Bài thi",
     icon: <AiOutlineFileText />,
     to: "/test",
+  },
+  {
+    label: "Kết quả",
+    icon: <BsCalendar2EventFill />,
+    to: "/result",
   },
 ];
 

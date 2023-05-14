@@ -2,7 +2,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 `;
 export const Card = styled.div`
   flex: 0 0 calc(25% - 20px);

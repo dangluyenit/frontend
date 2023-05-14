@@ -7,10 +7,11 @@
 }
 
 .inner-carousel {
-  top: 10%;
+  left: 30px;
   margin: auto;
-  width: 60vw;
-  aspect-ratio: calc(16 / 9);
+  width: 85vw;
+  height: 90vh;
+  aspect-ratio: calc(16 / 10);
   position: relative;
   overflow: hidden;
   border-radius: 16px;

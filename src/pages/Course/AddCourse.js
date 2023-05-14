@@ -81,21 +81,23 @@ const AddCourse = () => {
 
   const handleCourse = (e) => {
     e.preventDefault();
+
     console.log({ name, teacherCode });
     axios
       .post("http://localhost:4000/api/v1/courses", {
         name: name,
-        teacherCode: teacherCode,
+        teacherCode: code,
       })
       .then((result) => {
         console.log(result);
+        localStorage.setItem("course", result.data.metadata.id);
         navigate("/course");
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
-
+  const code = localStorage.getItem("code");
   return (
     <Container>
       <Table>
@@ -106,7 +108,8 @@ const AddCourse = () => {
           <input
             type="text"
             placeholder="Mã giáo viên"
-            value={teacherCode}
+            value={code}
+            readOnly
             onChange={handleTeacher}
           />
         </tr>

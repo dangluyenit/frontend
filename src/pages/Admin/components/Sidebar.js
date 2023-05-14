@@ -5,7 +5,8 @@ import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlineLogout, AiOutlinePieChart } from "react-icons/ai";
 import AvatarImage from "../../../assets/avatar.jpg";
-
+import { GiTeacher } from "react-icons/gi";
+import { FaUserAlt } from "react-icons/fa";
 const Container = styled.div`
   width: 20%;
   height: 100% !important;
@@ -80,6 +81,14 @@ const Sidebar = () => {
           <Link>
             <RiHomeLine />
             <h3>Trang chủ</h3>
+          </Link>
+          <Link>
+            <GiTeacher />
+            <h3>Giáo viên</h3>
+          </Link>
+          <Link>
+            <FaUserAlt />
+            <h3>Sinh viên</h3>
           </Link>
           <Link>
             <RiFileCopyLine />

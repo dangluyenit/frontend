@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -43,13 +45,6 @@ const Button = styled.button`
   position: absolute;
   left: 30%;
   top: 85%;
-  /* color: ${({ theme }) => theme.text};
-  width: max-content;
-  height: max-content;
-  background: ${({ theme }) => theme.bg3};
-  border: 1px solid black;
-  border-radius: 20px;
-  box-shadow: 0 0 10px #0f0c29; */
   border-radius: 20px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
@@ -74,31 +69,74 @@ const Button = styled.button`
   }
 `;
 const AddTest = () => {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [teacherCode, setTeacherCode] = useState("");
+  const [quantityQuestion, setQuantityQuestion] = useState("");
+  const handleTeacher = (e) => {
+    setTeacherCode(e.target.value);
+  };
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+  const handleQuantity = (e) => {
+    setQuantityQuestion(e.target.value);
+  };
+  const handleTest = (e) => {
+    e.preventDefault();
+    console.log({ name, teacherCode, quantityQuestion });
+    axios
+      .post("http://localhost:4000/api/v1/tests", {
+        name: name,
+        teacherCode: code,
+        quantityQuestion: quantityQuestion,
+      })
+      .then((result) => {
+        console.log(result);
+        navigate("/test");
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+  const code = localStorage.getItem("code");
   return (
     <Container>
       <Table>
         <Title>Thêm bài thi</Title>
         <tr>
+          <th>Mã giáo viên</th>
+          <td>: </td>
+          <input
+            type="text"
+            placeholder="Mã giáo viên"
+            value={code}
+            onChange={handleTeacher}
+            readOnly
+          />
+        </tr>
+        <tr>
           <th>Tên bài thi</th>
           <td>: </td>
-          <input type="text" placeholder="Tên bài thi" />
+          <input
+            type="text"
+            placeholder="Tên bài thi"
+            value={name}
+            onChange={handleName}
+          />
         </tr>
         <tr>
           <th>Số lượng câu hỏi</th>
           <td>: </td>
-          <input type="number" placeholder="Số lượng câu hỏi" />
+          <input
+            type="number"
+            placeholder="Số lượng câu hỏi"
+            value={quantityQuestion}
+            onChange={handleQuantity}
+          />
         </tr>
-        <tr>
-          <th>Thời gian thi</th>
-          <td>: </td>
-          <input type="text" placeholder="Thời gian thi" />
-        </tr>
-        <tr>
-          <th>Thời gian tạo bài thi</th>
-          <td>: </td>
-          <input type="datetime-local" placeholder="Thời gian tạo bài thi" />
-        </tr>
-        <Button>Hoàn thành</Button>
+
+        <Button onClick={handleTest}>Hoàn thành</Button>
       </Table>
     </Container>
   );

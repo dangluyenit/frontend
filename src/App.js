@@ -5,16 +5,6 @@ import { ThemeProvider } from "styled-components";
 import Layout from "./components/Layout/Layout";
 import { GlobalStyle } from "./styles/globalStyles";
 import { darkTheme, lightTheme } from "./styles/theme";
-import Homepage from "./pages/Homepage/Homepage";
-import Course from "./pages/Course/Course";
-import Test from "./pages/Test/Test";
-import Info from "./pages/Info/Info";
-import Login from "./pages/Login/Login";
-import CourseDetails from "./pages/Course/CourseDetails";
-import TestDetails from "./pages/Test/TestDetails";
-import AddCourse from "./pages/Course/AddCourse";
-import AddTest from "./pages/Test/AddTest";
-import Admin from "./pages/Admin/Admin";
 import { privateRoutes, publicRoutes } from "./pages/routes";
 
 export const ThemeContext = React.createContext(null);

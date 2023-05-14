@@ -89,26 +89,38 @@ export const Button = styled.button`
     outline: none;
   }
 `;
-
+export const Span = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  left: 23%;
+  border-radius: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #6100d4;
+`;
 export const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  inset: 0;
-  backdrop-filter: blur(4px);
+  flex-direction: column;
+  position: absolute;
+  left: 20%;
 `;
 
 export const ModalInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   background: white;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
-  width: 50%;
-  height: 100vh;
+  width: 60vw;
+  height: max-content;
   input {
     width: 100%;
     height: 40px;
@@ -139,6 +151,8 @@ export const ButtonDone = styled.button`
   font-size: 15px;
   font-weight: 700;
   width: max-content;
+  height: max-content;
+  transform: translateX(50px) translateY(300px);
   letter-spacing: 1px;
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
@@ -146,9 +160,9 @@ export const ButtonDone = styled.button`
   :hover {
     letter-spacing: 2px;
   }
-  :active {
+  /* :active {
     transform: scale(0.95);
-  }
+  } */
   :focus {
     outline: none;
   }
