@@ -15,26 +15,6 @@ export const Card = styled.div`
   background: transparent;
   border-radius: 20px;
   cursor: pointer;
-  /* a {
-    display: flex;
-    width: max-content;
-    padding: 15px;
-    opacity: 1;
-    text-decoration: none;
-    position: relative;
-    left: 25%;
-    transform: translateY(40px);
-    background: #fff;
-    color: black;
-    border: none;
-    border-radius: 10px;
-  }
-  :hover a {
-    opacity: 0.5;
-  }
-  :active a {
-    transform: scale(0.05);
-  } */
 `;
 export const Links = styled.button`
   display: flex;
@@ -104,5 +84,47 @@ export const Button = styled.button`
   }
   .icon-btn {
     font-size: 50px;
+  }
+`;
+export const ButtonDelete = styled.button`
+  border-radius: 20px;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: ${({ theme }) => theme.button};
+  font-size: 15px;
+  font-weight: 700;
+  margin: 10px;
+  width: max-content;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transform: translateY(10px);
+  :hover {
+    opacity: 0.5;
+  }
+  svg {
+    font-size: 10px;
+  }
+`;
+export const ButtonEdit = styled.button`
+  border-radius: 20px;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: ${({ theme }) => theme.button};
+  font-size: 15px;
+  font-weight: 500;
+  margin: 15px;
+  width: max-content;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transform: translateX(50px);
+  :hover {
+    opacity: 0.5;
+  }
+  svg {
+    font-size: 10px;
   }
 `;

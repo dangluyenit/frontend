@@ -68,11 +68,16 @@ const Button = styled.button`
     outline: none;
   }
 `;
+const Tr = styled.tr``;
+const Th = styled.th``;
+const Td = styled.td``;
+const Input = styled.input``;
 const AddTest = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [teacherCode, setTeacherCode] = useState("");
   const [quantityQuestion, setQuantityQuestion] = useState("");
+  const [examDuration, setExamDuration] = useState("");
   const handleTeacher = (e) => {
     setTeacherCode(e.target.value);
   };
@@ -82,60 +87,91 @@ const AddTest = () => {
   const handleQuantity = (e) => {
     setQuantityQuestion(e.target.value);
   };
+  const hanldeExamDuration = (e) => {
+    setExamDuration(e.target.value);
+  };
   const handleTest = (e) => {
     e.preventDefault();
-    console.log({ name, teacherCode, quantityQuestion });
+    console.log({ name, teacherCode, quantityQuestion, examDuration });
     axios
       .post("http://localhost:4000/api/v1/tests", {
         name: name,
         teacherCode: code,
         quantityQuestion: quantityQuestion,
+        examDuration: examDuration,
       })
       .then((result) => {
         console.log(result);
+        const temp = result.data.metadata.id;
+        console.log({ temp });
+        axios
+          .post(
+            "http://localhost:4000/api/v1/test-questions/addRandomQuestion",
+            {
+              quantity: quantityQuestion,
+              idBankQuestion: "32074D02-BD38-45EE-92E4-08EA767827BC",
+              idTest: temp,
+            }
+          )
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         navigate("/test");
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
+
   const code = localStorage.getItem("code");
   return (
     <Container>
       <Table>
         <Title>Thêm bài thi</Title>
-        <tr>
-          <th>Mã giáo viên</th>
-          <td>: </td>
-          <input
+        <Tr>
+          <Th>Mã giáo viên</Th>
+          <Td>: </Td>
+          <Input
             type="text"
             placeholder="Mã giáo viên"
             value={code}
             onChange={handleTeacher}
             readOnly
           />
-        </tr>
-        <tr>
-          <th>Tên bài thi</th>
-          <td>: </td>
-          <input
+        </Tr>
+        <Tr>
+          <Th>Tên bài thi</Th>
+          <Td>: </Td>
+          <Input
             type="text"
             placeholder="Tên bài thi"
             value={name}
             onChange={handleName}
           />
-        </tr>
-        <tr>
-          <th>Số lượng câu hỏi</th>
-          <td>: </td>
-          <input
+        </Tr>
+        <Tr>
+          <Th>Số lượng câu hỏi</Th>
+          <Td>: </Td>
+          <Input
             type="number"
             placeholder="Số lượng câu hỏi"
             value={quantityQuestion}
             onChange={handleQuantity}
           />
-        </tr>
-
+        </Tr>
+        <Tr>
+          <Th>Thời gian làm bài</Th>
+          <Td>: </Td>
+          <Input
+            type="text"
+            placeholder="Thời gian làm bài"
+            value={examDuration}
+            onChange={hanldeExamDuration}
+          />
+        </Tr>
         <Button onClick={handleTest}>Hoàn thành</Button>
       </Table>
     </Container>

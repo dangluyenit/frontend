@@ -5,14 +5,14 @@ function Navbar() {
   return (
     <NavbarContainer>
       <Text>
-        Good morning,
-        <span> Luyến</span>
+        Chào,
+        <span>Luyến</span>
       </Text>
       <InputContainer>
         <Icon>
           <FiSearch />
         </Icon>
-        <Input type="text" placeholder="Search" />
+        <Input type="text" placeholder="Tìm kiếm" />
       </InputContainer>
     </NavbarContainer>
   );

@@ -1,36 +1,37 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 75vw;
+  width: 85vw;
   height: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 10%;
-  left: 5%;
+  left: 3%;
+  background: linear-gradient(to bottom right, white 0%, #3399ff 70%);
+  border-radius: 2rem;
 `;
-export const Table = styled.div`
+export const Table = styled.table`
   display: table;
-  width: inherit;
-  border-collapse: collapse;
-  box-shadow: 0 5px 10px gray;
-  background: white;
-  text-align: left;
+  width: 80vw;
+  height: 100vh;
+  background: linear-gradient(to bottom right, white 0%, #3399ff 70%);
+  border-radius: 2rem;
   overflow: hidden;
-
-  thead {
-    box-shadow: 0 5px 10px gray;
+`;
+export const Tr = styled.tr`
+  text-align: center;
+  :nth-child(even) {
+    background-color: #0000000b;
   }
-  th {
-    padding: 1rem 2rem;
-    letter-spacing: 1px;
-    text-align: center;
-  }
-  td {
-    padding: 1rem 2rem;
-  }
-  tr:nth-child(even) {
-    background-color: grey;
-  }
+`;
+export const Th = styled.th`
+  height: 50px;
+`;
+export const Td = styled.td`
+  height: 50px;
+`;
+export const Links = styled.a`
+  text-decoration: none;
+  color: wheat;
 `;

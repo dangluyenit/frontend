@@ -21,13 +21,14 @@ import {
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
+import ClipLoader from "react-spinners/ClipLoader";
 const Login = () => {
   const [click, setClick] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [studentCode, setStudentCode] = useState("");
   const history = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSCode = (e) => {
     setStudentCode(e.target.value);
@@ -41,7 +42,11 @@ const Login = () => {
 
   const handleStudent = (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      history("/");
+    }, 3000);
     axios
       .post("http://localhost:4000/api/v1/auth/student/sign-in", {
         email: email,
@@ -49,8 +54,9 @@ const Login = () => {
         studentCode: studentCode,
       })
       .then((result) => {
-        console.log(result);
+        console.log(result.data);
         const token = result.data.metadata.accessToken;
+
         const decode = jwt_decode(token, {
           payload: { role: true, studentCode: true },
         });
@@ -60,7 +66,6 @@ const Login = () => {
         localStorage.setItem("role", role);
         localStorage.setItem("code", code);
         console.log(role);
-        history("/");
       })
       .catch((error) => {
         console.log(error.response);
@@ -73,7 +78,11 @@ const Login = () => {
   };
   const handleRegisterStudent = (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      history("/login/student");
+    }, 3000);
     axios
       .post("http://localhost:4000/api/v1/auth/student/sign-up", {
         studentCode: studentCode,
@@ -82,11 +91,6 @@ const Login = () => {
       })
       .then((result) => {
         console.log(result);
-        if (result.data.status === "success") {
-          setClick(true);
-        } else {
-          setClick(false);
-        }
       })
       .catch((error) => {
         console.log(error.reponse);
@@ -122,7 +126,18 @@ const Login = () => {
                 onChange={handlePassword}
               />
               <Links href="#">Quên mật khẩu?</Links>
-              <Button type="submit">Đăng nhập</Button>
+              {loading ? (
+                <Button type="submit">
+                  <ClipLoader
+                    color="#3300ff"
+                    loading={loading}
+                    size={25}
+                    speedMultiplier={0.5}
+                  />
+                </Button>
+              ) : (
+                <Button type="submit">Đăng nhập</Button>
+              )}
             </Form>
           </LoginContainer>
           <RegisterContainer clicked={click} className="register-container">
@@ -161,7 +176,18 @@ const Login = () => {
                 onChange={handlePassword}
               />
               <Links href="#">Đã có tài khoản?</Links>
-              <Button>Đăng ký</Button>
+              {loading ? (
+                <Button>
+                  <ClipLoader
+                    color="#3300ff"
+                    loading={loading}
+                    size={25}
+                    speedMultiplier={0.5}
+                  />
+                </Button>
+              ) : (
+                <Button>Đăng ký</Button>
+              )}
             </Form>
           </RegisterContainer>
         </FormContainer>

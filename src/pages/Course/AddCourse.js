@@ -81,7 +81,6 @@ const AddCourse = () => {
 
   const handleCourse = (e) => {
     e.preventDefault();
-
     console.log({ name, teacherCode });
     axios
       .post("http://localhost:4000/api/v1/courses", {

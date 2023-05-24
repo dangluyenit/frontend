@@ -21,13 +21,14 @@ import {
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
+import ClipLoader from "react-spinners/ClipLoader";
 const Login = () => {
   const [click, setClick] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [teacherCode, setTeacherCode] = useState("");
   const history = useNavigate();
+  const [loading, setLoading] = useState(false);
   const handleTCode = (e) => {
     setTeacherCode(e.target.value);
   };
@@ -40,9 +41,12 @@ const Login = () => {
   };
   const handleTeacher = (e) => {
     e.preventDefault();
-    console.log({ email, password, teacherCode });
-    // eslint-disable-next-line no-unused-vars
-    const response = axios
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      history("/");
+    }, 3000);
+    axios
       .post("http://localhost:4000/api/v1/auth/teacher/sign-in", {
         email: email,
         password: password,
@@ -59,8 +63,6 @@ const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("role", role);
         localStorage.setItem("code", code);
-        console.log(role);
-        history("/");
       })
       .catch((error) => {
         console.log(error.response);
@@ -74,9 +76,12 @@ const Login = () => {
 
   const handleRegisterTeacher = (e) => {
     e.preventDefault();
-    console.log({ teacherCode, email, password });
-    // eslint-disable-next-line no-unused-vars
-    const reponse = axios
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      history("/login/teacher");
+    }, 3000);
+    axios
       .post("http://localhost:4000/api/v1/auth/teacher/sign-up", {
         teacherCode: teacherCode,
         email: email,
@@ -84,12 +89,6 @@ const Login = () => {
       })
       .then((result) => {
         console.log(result);
-        // if (result.data.status === "success") {
-        //   setClick(false);
-        // } else {
-        //   setClick(true);
-        // }
-        history("/login/teacher");
       })
       .catch((error) => {
         console.log(error.reponse);
@@ -126,7 +125,18 @@ const Login = () => {
               />
 
               <Links href="#">Quên mật khẩu?</Links>
-              <Button type="submit">Đăng nhập</Button>
+              {loading ? (
+                <Button type="submit">
+                  <ClipLoader
+                    color="#3300ff"
+                    loading={loading}
+                    size={25}
+                    speedMultiplier={0.5}
+                  />
+                </Button>
+              ) : (
+                <Button type="submit">Đăng nhập</Button>
+              )}
             </Form>
           </LoginContainer>
           <RegisterContainer clicked={click} className="register-container">
@@ -165,7 +175,18 @@ const Login = () => {
                 onChange={handlePassword}
               />
               <Links href="#">Đã có tài khoản?</Links>
-              <Button>Đăng ký</Button>
+              {loading ? (
+                <Button>
+                  <ClipLoader
+                    color="#3300ff"
+                    loading={loading}
+                    size={25}
+                    speedMultiplier={0.5}
+                  />
+                </Button>
+              ) : (
+                <Button>Đăng ký</Button>
+              )}
             </Form>
           </RegisterContainer>
         </FormContainer>

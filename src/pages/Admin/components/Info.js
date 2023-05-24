@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 function Info() {
+  const [student, setStudent] = useState("");
+  const [teacher, setTeacher] = useState("");
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/v1/student")
+      .then((response) => {
+        console.log(response);
+        setStudent(response.data.metadata);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios
+      .get("http://localhost:4000/api/v1/teacher")
+      .then((response) => {
+        console.log(response);
+        setTeacher(response.data.metadata);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <InfoCard>
       <Card>
         <CardContent>
           <Row>
-            <Digit>5</Digit>
+            <Digit>{teacher.length}</Digit>
             <InfoContainer>
-              <Title>Teacher</Title>
+              <Title>Giáo viên</Title>
             </InfoContainer>
           </Row>
         </CardContent>
@@ -16,9 +39,9 @@ function Info() {
       <Card>
         <CardContent>
           <Row>
-            <Digit>15</Digit>
+            <Digit>{student.length}</Digit>
             <InfoContainer>
-              <Title>Student</Title>
+              <Title>Sinh viên</Title>
             </InfoContainer>
           </Row>
         </CardContent>

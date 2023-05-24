@@ -1,11 +1,23 @@
-import React, { useState } from "react";
-import { ButtonDone, Modal, ModalInfo, Table } from "./styles";
-import { BsCalendarDate } from "react-icons/bs";
+import React, { useEffect, useState } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import {
+  ButtonClose,
+  ButtonDone,
+  Input,
+  InputFile,
+  Modal,
+  ModalInfo,
+  TableEdit,
+  Td,
+  Th,
+  Tr,
+} from "./styles";
+
+import { BsCalendarDate, BsImage } from "react-icons/bs";
 import { TbGenderBigender } from "react-icons/tb";
 import { FaAddressBook } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiPhone } from "react-icons/bi";
-// import { AiOutlineCloseCircle } from "react-icons/ai";
 import {
   MdOutlineDriveFileRenameOutline,
   MdOutlineDoneOutline,
@@ -13,53 +25,50 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const ModalEdit = ({ onClose }) => {
-  const [name, setName] = useState("");
-  const [sex, setSex] = useState("");
-  const [phone, setPhone] = useState("");
-  const [dob, setDob] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [image, setImage] = useState();
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
-  const handleSex = (e) => {
-    setSex(e.target.value);
-  };
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-  };
-  const handleDob = (e) => {
-    setDob(e.target.value);
-  };
-  const handleAddress = (e) => {
-    setAddress(e.target.value);
-  };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleImage = (e) => {
-    setImage(e.target.file);
-  };
+const ModalEdit = () => {
+  const [values, setValues] = useState({
+    name: "",
+    sex: "",
+    phone: "",
+    dob: "",
+    address: "",
+    email: "",
+    image: "",
+  });
+
   const navigate = useNavigate();
+  useEffect(() => {
+    const code = localStorage.getItem("code");
+    const role = localStorage.getItem("role");
+    console.log(role);
+    axios
+      .get(`http://localhost:4000/api/v1/${role}/${code}`)
+      .then((response) => {
+        console.log(response.data.metadata);
+        setValues({
+          ...values,
+          name: response.data.metadata.name,
+          sex: response.data.metadata.sex,
+          phone: response.data.metadata.phone,
+          dob: response.data.metadata.dob,
+          address: response.data.metadata.address,
+          email: response.data.metadata.email,
+          image: response.data.metadata.image,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // eslint-disable-next-line
+  }, []);
 
   const handleEdit = (e) => {
     e.preventDefault();
     const code = localStorage.getItem("code");
     const role = localStorage.getItem("role");
-    console.log({ name, sex, dob, address, email, phone, image });
 
     axios
-      .put(`http://localhost:4000/api/v1/${role}/${code}`, {
-        name: name,
-        sex: sex,
-        phone: phone,
-        dob: dob,
-        address: address,
-        email: email,
-        image: image,
-      })
+      .put(`http://localhost:4000/api/v1/${role}/${code}`, values)
       .then((response) => {
         console.log(response);
         navigate("/info");
@@ -71,102 +80,104 @@ const ModalEdit = ({ onClose }) => {
   return (
     <Modal>
       <ModalInfo>
-        <Table>
-          <tr>
-            <th>
+        <TableEdit>
+          <Tr>
+            <Th>
               <MdOutlineDriveFileRenameOutline />
               Họ và tên
-            </th>
-            <td>: </td>
-            <input
+            </Th>
+            <Td>: </Td>
+            <Input
               type="text"
               placeholder="Họ và tên"
-              value={name}
-              onChange={handleName}
+              value={values.name}
+              onChange={(e) => setValues({ ...values, name: e.target.value })}
             />
-          </tr>
-          <tr>
-            <th>
+          </Tr>
+          <Tr>
+            <Th>
               <BiPhone />
               Số điện thoại
-            </th>
-            <td>: </td>
-            <input
+            </Th>
+            <Td>: </Td>
+            <Input
               type="text"
               placeholder="Số điện thoại"
-              value={phone}
-              onChange={handlePhone}
+              value={values.phone}
+              onChange={(e) => setValues({ ...values, phone: e.target.value })}
             />
-          </tr>
-          <tr>
-            <th>
+          </Tr>
+          <Tr>
+            <Th>
               <BsCalendarDate />
               Ngày sinh
-            </th>
-            <td>: </td>
-            <input
+            </Th>
+            <Td>: </Td>
+            <Input
               type="date"
               placeholder="Ngày sinh"
-              value={dob}
-              onChange={handleDob}
+              value={values.dob}
+              onChange={(e) => setValues({ ...values, dob: e.target.value })}
             />
-          </tr>
-          <tr>
-            <th>
+          </Tr>
+          <Tr>
+            <Th>
               <TbGenderBigender />
               Giới tính
-            </th>
-            <td>: </td>
-            <input
+            </Th>
+            <Td>: </Td>
+            <Input
               type="text"
               placeholder="Giới tính"
-              value={sex}
-              onChange={handleSex}
+              value={values.sex}
+              onChange={(e) => setValues({ ...values, sex: e.target.value })}
             />
-          </tr>
-          <tr>
-            <th>
+          </Tr>
+          <Tr>
+            <Th>
               <FaAddressBook />
               Địa chỉ
-            </th>
-            <td>: </td>
-            <input
+            </Th>
+            <Td>: </Td>
+            <Input
               type="text"
               placeholder="Địa chỉ"
-              value={address}
-              onChange={handleAddress}
+              value={values.address}
+              onChange={(e) =>
+                setValues({ ...values, address: e.target.value })
+              }
             />
-          </tr>
-          <tr>
-            <th>
+          </Tr>
+          <Tr>
+            <Th>
               <HiOutlineMail />
               Email
-            </th>
-            <td>: </td>
-            <input
+            </Th>
+            <Td>: </Td>
+            <Input
               type="text"
               placeholder="Email"
-              value={email}
-              onChange={handleEmail}
+              value={values.email}
+              readOnly
             />
-          </tr>
-          <tr>
-            <th>
-              <HiOutlineMail />
-              Images
-            </th>
-            <td>: </td>
-            <input type="file" placeholder="Images" onChange={handleImage} />
-          </tr>
-        </Table>
+          </Tr>
+          <Tr>
+            <Th>
+              <BsImage />
+              Hình ảnh
+            </Th>
+            <Td>: </Td>
+            <InputFile type="file" placeholder="Images" />
+          </Tr>
+        </TableEdit>
         <ButtonDone onClick={handleEdit}>
           Hoàn thành
           <MdOutlineDoneOutline />
         </ButtonDone>
-        {/* <ButtonClose onClick={onClose}>
+        <ButtonClose onClick={() => navigate("/info")}>
           Đóng
           <AiOutlineCloseCircle />
-        </ButtonClose> */}
+        </ButtonClose>
       </ModalInfo>
     </Modal>
   );

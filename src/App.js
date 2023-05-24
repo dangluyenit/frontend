@@ -6,12 +6,21 @@ import Layout from "./components/Layout/Layout";
 import { GlobalStyle } from "./styles/globalStyles";
 import { darkTheme, lightTheme } from "./styles/theme";
 import { privateRoutes, publicRoutes } from "./pages/routes";
-
+import LayoutAmin from "./pages/Admin/components/Layout/Layout";
+import { useEffect } from "react";
+import PacmanLoader from "react-spinners/PacmanLoader";
 export const ThemeContext = React.createContext(null);
 
 const App = () => {
   const [theme, setTheme] = useState("light");
   const themeStyle = theme === "light" ? lightTheme : darkTheme;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   return (
     <ThemeContext.Provider value={{ setTheme, theme }}>
       <ThemeProvider theme={themeStyle}>
@@ -25,41 +34,55 @@ const App = () => {
             rel="stylesheet"
           />
         </Helmet>
-        <>
-          <Routes>
-            {/* <Route exact path="/" Component={Homepage}></Route>
-              <Route exact path="/course" Component={Course}></Route>
-              <Route exact path="/info" Component={Info}></Route>
-              <Route exact path="/test" Component={Test}></Route>
-              <Route exact path="/login" Component={Login}></Route>
-              <Route exact path="/course/details" Component={CourseDetails} />
-              <Route exact path="/test/details" Component={TestDetails} />
-              <Route exact path="/course/add" Component={AddCourse} />
-              <Route exact path="/test/add" Component={AddTest} /> */}
-            {publicRoutes.map((route, index) => {
-              const Page = route.component;
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <Layout>
-                      <Page />
-                    </Layout>
-                  }
-                />
-              );
-            })}
-          </Routes>
-          <Routes>
-            {privateRoutes.map((route, index) => {
-              const Page2 = route.component;
-              return (
-                <Route key={index} path={route.path} element={<Page2 />} />
-              );
-            })}
-          </Routes>
-        </>
+        {loading ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              position: "absolute",
+              top: "20vw",
+              left: "45vw",
+            }}
+          >
+            <PacmanLoader color="#33FF33" loading={loading} size={50} />
+          </div>
+        ) : (
+          <>
+            <Routes>
+              {publicRoutes.map((route, index) => {
+                const Page = route.component;
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    }
+                  />
+                );
+              })}
+            </Routes>
+            <Routes>
+              {privateRoutes.map((route, index) => {
+                const Page2 = route.component;
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={
+                      <LayoutAmin>
+                        <Page2 />
+                      </LayoutAmin>
+                    }
+                  />
+                );
+              })}
+            </Routes>
+          </>
+        )}
       </ThemeProvider>
     </ThemeContext.Provider>
   );

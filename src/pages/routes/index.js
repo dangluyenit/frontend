@@ -15,6 +15,11 @@ import LoginAdmin from "../Admin/components/Login";
 import ModalEdit from "../Info/ModalEdit";
 import AddLesson from "../Course/AddLesson";
 import AddQuestion from "../Test/AddQuestion";
+import Teacher from "../Admin/page/Teacher/Teacher";
+import Student from "../Admin/page/Student/Student";
+import EditCourse from "../Course/EditCourse";
+import EditTest from "../Test/EditTest";
+import ResultDetails from "../Result/ResultDetails";
 const publicRoutes = [
   {
     path: "/",
@@ -45,7 +50,7 @@ const publicRoutes = [
     component: LoginTeacher,
   },
   {
-    path: "/course/details",
+    path: "/course/details/:id",
     component: CourseDetails,
   },
   {
@@ -53,7 +58,7 @@ const publicRoutes = [
     component: AddCourse,
   },
   {
-    path: "/test/details",
+    path: "/test/details/:id",
     component: TestDetails,
   },
   {
@@ -69,12 +74,28 @@ const publicRoutes = [
     component: ModalEdit,
   },
   {
-    path: "/course/addlesson",
+    path: "/course/addlesson/:id",
     component: AddLesson,
   },
   {
-    path: "/test/addquestion",
+    path: "/test/addquestion/:id",
     component: AddQuestion,
+  },
+  {
+    path: "/login/admin",
+    component: LoginAdmin,
+  },
+  {
+    path: "/course/edit/:id",
+    component: EditCourse,
+  },
+  {
+    path: "/test/edit/:id",
+    component: EditTest,
+  },
+  {
+    path: "/result/details/:id",
+    component: ResultDetails,
   },
 ];
 const privateRoutes = [
@@ -83,8 +104,12 @@ const privateRoutes = [
     component: Admin,
   },
   {
-    path: "/login/admin",
-    component: LoginAdmin,
+    path: "/teacher",
+    component: Teacher,
+  },
+  {
+    path: "/student",
+    component: Student,
   },
 ];
 export { publicRoutes, privateRoutes };

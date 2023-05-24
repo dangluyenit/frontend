@@ -38,16 +38,20 @@ export const Image = styled.div`
   }
 `;
 export const Question = styled.div`
-  width: 450px;
-  min-height: 200px;
-  height: min-content;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 10px 10px 42px 0px rgba(63, 59, 59, 0.75);
+  width: 88vw;
+  height: 80vh;
+  padding: 30px;
   display: flex;
   justify-content: space-evenly;
-  margin-left: 20vw;
-  margin-top: 10vw;
+  margin-top: 5vw;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent, #30ff00);
+    border-radius: 6px;
+  }
 `;
 export const ScoreSection = styled.div`
   display: flex;
@@ -57,6 +61,10 @@ export const ScoreSection = styled.div`
 export const QuestionSection = styled.div`
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
 `;
 export const QuestionCount = styled.div`
   margin-bottom: 20px;
@@ -65,37 +73,42 @@ export const QuestionCount = styled.div`
   }
 `;
 export const QuestionText = styled.div`
-  margin-bottom: 12px;
+  margin-bottom: -15px;
+  display: block;
+
+  p {
+    font-weight: bold;
+  }
+  svg {
+    font-size: 25px;
+    transform: translateX(-30px) translateY(-25px);
+  }
 `;
 export const AnswerQuestion = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+
   justify-content: space-between;
   gap: 20px;
-  .btn-choice {
+  padding: 20px;
+  background-color: #252d4a;
+  border-radius: 15px;
+
+  &:focus {
+    background: #6699ff;
+  }
+  p {
     width: 100%;
+    cursor: pointer;
     font-size: 16px;
     color: #ffffff;
-    background-color: #252d4a;
-    border-radius: 15px;
     display: flex;
     padding: 5px;
-    justify-content: flex-start;
-    align-items: center;
-    border: 5px solid #234668;
-    cursor: pointer;
-    :focus {
-      background-color: #00ff00;
-      color: black;
-      font-style: inherit;
-    }
-    :active {
-      transform: scale(0.95) rotateZ(1.7deg);
-    }
   }
 `;
-
+export const Input = styled.input`
+  width: 50px;
+`;
 export const Button = styled.button`
   color: ${({ theme }) => theme.button};
   margin-left: 45px;
@@ -112,42 +125,30 @@ export const Button = styled.button`
     font-size: 50px;
   }
 `;
-
-export const ButtonPre = styled.button`
-  color: ${({ theme }) => theme.button};
+export const ButtonClearn = styled.button`
   width: max-content;
   height: min-content;
-  position: absolute;
-  margin-top: 10%;
-  margin-right: 45%;
-  background-color: transparent;
+  background: linear-gradient(transparent, #33ccff);
   border: 1px solid black;
   border-radius: 15px;
   cursor: pointer;
-
-  &:disabled {
-    pointer-events: none;
-  }
   &:hover {
-    color: #fff;
-    background-color: #1a1a1a;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
   &:active {
     box-shadow: none;
     transform: translateY(0);
   }
 `;
-
-export const ButtonNext = styled.button`
+export const ButtonSubmit = styled.button`
   color: ${({ theme }) => theme.button};
   width: max-content;
   height: min-content;
   position: absolute;
-  margin-top: 10%;
-  margin-left: 75%;
-  background-color: transparent;
+  margin-top: 0%;
+  margin-left: 80%;
+  background: linear-gradient(transparent, #30ff00);
   border: 1px solid black;
   border-radius: 15px;
   cursor: pointer;
@@ -155,16 +156,68 @@ export const ButtonNext = styled.button`
     pointer-events: none;
   }
   &:hover {
-    color: #fff;
-    background-color: #1a1a1a;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-    .icon-next {
-      color: #fff;
-    }
+    transform: translateY(-5px);
   }
   &:active {
     box-shadow: none;
     transform: translateY(0);
   }
+`;
+export const ButtonDelete = styled.button`
+  border-radius: 20px;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: ${({ theme }) => theme.button};
+  font-size: 15px;
+  font-weight: 700;
+  margin: 10px;
+  width: max-content;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transform: translateY(10px);
+  :hover {
+    opacity: 0.5;
+  }
+  svg {
+    font-size: 10px;
+  }
+`;
+export const ButtonEdit = styled.button`
+  border-radius: 20px;
+  border: 1px solid #4bb6b7;
+  background-color: #4bb6b7;
+  color: ${({ theme }) => theme.button};
+  font-size: 15px;
+  font-weight: 700;
+  margin: 15px;
+  width: max-content;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transform: translateX(50px);
+  :hover {
+    opacity: 0.5;
+  }
+  svg {
+    font-size: 10px;
+  }
+`;
+export const Timer = styled.div`
+  color: ${({ theme }) => theme.button};
+  width: 135px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px;
+  position: absolute;
+  margin-top: 0%;
+  margin-left: 65%;
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 10px;
 `;

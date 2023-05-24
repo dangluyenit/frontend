@@ -3,10 +3,12 @@ import Badge from "./Badge";
 import styled from "styled-components";
 import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
-import { AiOutlineLogout, AiOutlinePieChart } from "react-icons/ai";
+import { AiOutlineLogout } from "react-icons/ai";
 import AvatarImage from "../../../assets/avatar.jpg";
 import { GiTeacher } from "react-icons/gi";
 import { FaUserAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 const Container = styled.div`
   width: 20%;
   height: 100% !important;
@@ -51,6 +53,13 @@ const Links = styled.ul`
   flex-direction: column;
   padding-top: 2rem;
   height: 60%;
+  text-decoration: none;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  position: relative;
+  top: -15px;
+  left: -15px;
 `;
 
 const Link = styled.li`
@@ -65,46 +74,50 @@ const Link = styled.li`
   }
   svg {
     font-size: 1.1rem;
+    margin-top: 8px;
   }
 `;
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <ProfileContainer>
         <Avatar src={AvatarImage} />
         <Name>Đặng Ngọc Luyến</Name>
-        <Badge content="Amin" />
+        <Badge content="Quản trị viên" />
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <Link>
-            <RiHomeLine />
+          <Link onClick={() => navigate("/admin")}>
             <h3>Trang chủ</h3>
+            <RiHomeLine />
           </Link>
-          <Link>
-            <GiTeacher />
+          <Link onClick={() => navigate("/teacher")}>
             <h3>Giáo viên</h3>
+            <GiTeacher />
           </Link>
-          <Link>
-            <FaUserAlt />
+          <Link onClick={() => navigate("/student")}>
             <h3>Sinh viên</h3>
+            <FaUserAlt />
           </Link>
           <Link>
-            <RiFileCopyLine />
             <h3>Khoá học</h3>
+            <RiFileCopyLine />
           </Link>
           <Link>
-            <FaWallet />
             <h3>Bài thi</h3>
+            <FaWallet />
           </Link>
-          <Link>
-            <AiOutlinePieChart />
-            <h3>Kết quả</h3>
-          </Link>
-          <Link>
-            <AiOutlineLogout />
+
+          <Link
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }}
+          >
             <h3>Đăng xuất</h3>
+            <AiOutlineLogout />
           </Link>
         </Links>
       </LinksContainer>

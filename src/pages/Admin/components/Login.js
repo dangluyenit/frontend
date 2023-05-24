@@ -12,7 +12,7 @@ const Body = styled.div`
   font-family: "Poppins", sans-serif;
   overflow: hidden;
   height: 100vh;
-  margin-left: 5vw;
+  margin-left: 15vw;
 `;
 const Container = styled.div`
   background-color: #fff;

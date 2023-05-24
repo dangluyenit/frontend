@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   SBtLogin,
   SBtLogout,
@@ -8,8 +8,6 @@ import {
   SLinkIcon,
   SLinkLabel,
   SLogo,
-  SSearch,
-  SSearchIcon,
   SSidebar,
   SSidebarButton,
   STheme,
@@ -23,7 +21,6 @@ import { logoSVG } from "../../assets";
 import {
   AiOutlineHome,
   AiOutlineLeft,
-  AiOutlineSearch,
   AiOutlineFolderOpen,
   AiOutlineFileText,
   AiOutlineLogin,
@@ -35,19 +32,10 @@ import { ThemeContext } from "./../../App";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const searchRef = useRef(null);
   const { theme, setTheme } = useContext(ThemeContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const searchClickHandler = () => {
-    if (!sidebarOpen) {
-      setSidebarOpen(true);
-      searchRef.current.focus();
-    } else {
-      // search functionality
-    }
-  };
 
   return (
     <SSidebar isOpen={sidebarOpen}>
@@ -62,19 +50,7 @@ const Sidebar = () => {
       <SLogo>
         <img src={logoSVG} alt="logo" />
       </SLogo>
-      <SSearch
-        onClick={searchClickHandler}
-        style={!sidebarOpen ? { width: `fit-content` } : {}}
-      >
-        <SSearchIcon>
-          <AiOutlineSearch />
-        </SSearchIcon>
-        <input
-          ref={searchRef}
-          placeholder="Tìm kiếm"
-          style={!sidebarOpen ? { width: 0, padding: 0 } : {}}
-        />
-      </SSearch>
+
       <SDivider />
       {linksArray.map(({ icon, label, to }) => (
         <SLinkContainer key={label} isActive={pathname === to}>

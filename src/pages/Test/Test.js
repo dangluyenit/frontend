@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Image, Title } from "./styles";
+import { Button, ButtonEdit, Card, Container, Image, Title } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import axios from "axios";
+import { FaRegEdit } from "react-icons/fa";
+
 const Test = (props) => {
   const navigate = useNavigate();
   const [test, setTest] = useState([]);
@@ -10,25 +12,36 @@ const Test = (props) => {
     axios
       .get("http://localhost:4000/api/v1/tests")
       .then((response) => {
+        console.log(response.data.metadata);
         setTest(response.data.metadata);
       })
       .catch((error) => {
         console.log(error.response);
       });
   }, []);
+
   return (
     <Container>
       <Title>Bài thi</Title>
-      {test.map((post, index) => (
-        <Card>
+      {test.map((post) => (
+        <Card key={post.id}>
           {localStorage.getItem("role") === "TEACHER" ? (
-            <Image key={index} onClick={() => navigate("/test/addquestion")}>
+            <Image onClick={() => navigate(`/test/addquestion/${post.id}`)}>
               <Title>{post.name}</Title>
             </Image>
           ) : (
-            <Image key={index} onClick={() => navigate("/test/details")}>
+            <Image onClick={() => navigate(`/test/details/${post.id}`)}>
               <Title>{post.name}</Title>
             </Image>
+          )}
+
+          {localStorage.getItem("role") === "TEACHER" ? (
+            <ButtonEdit onClick={() => navigate(`/test/edit/${post.id}`)}>
+              <FaRegEdit />
+              Cập nhật
+            </ButtonEdit>
+          ) : (
+            ""
           )}
         </Card>
       ))}

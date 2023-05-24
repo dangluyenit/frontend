@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 const Container = styled.div`
   display: flex;
@@ -66,11 +68,37 @@ const Button = styled.button`
   }
 `;
 const AddLesson = () => {
-  const [teacherCode, setTeacherCode] = useState("");
-  const handleTeacher = (e) => {
-    setTeacherCode(e.target.value);
+  const [name, setName] = useState("");
+  const [content, setContent] = useState("");
+  const [video, setVideo] = useState("");
+  const handleVideo = (e) => {
+    setVideo(e.target.value);
   };
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+  const handleContent = (e) => {
+    setContent(e.target.value);
+  };
+
   const code = localStorage.getItem("code");
+  const { id } = useParams();
+  const hanldeAdd = () => {
+    axios
+      .post(`http://localhost:4000/api/v1/lessons`, {
+        teacherCode: code,
+        name: name,
+        content: content,
+        video: video,
+        idCourse: id,
+      })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <Container>
       <Table>
@@ -78,25 +106,39 @@ const AddLesson = () => {
         <tr>
           <th>Mã giáo viên</th>
           <td>: </td>
-          <input
-            type="text"
-            placeholder="Mã giáo viên"
-            value={code}
-            readOnly
-            onChange={handleTeacher}
-          />
+          <input type="text" placeholder="Mã giáo viên" value={code} readOnly />
         </tr>
         <tr>
           <th>Tên bài học</th>
           <td>: </td>
-          <input type="text" placeholder="Tên bài học" />
+          <input
+            type="text"
+            placeholder="Tên bài học"
+            value={name}
+            onChange={handleName}
+          />
         </tr>
         <tr>
           <th>Nội dung bài học</th>
           <td>: </td>
-          <input type="text" placeholder="Nội dung bài học" />
+          <input
+            type="text"
+            placeholder="Nội dung bài học"
+            value={content}
+            onChange={handleContent}
+          />
         </tr>
-        <Button>Hoàn thành</Button>
+        <tr>
+          <th>Video</th>
+          <td>: </td>
+          <input
+            type="text"
+            placeholder="Video"
+            value={video}
+            onChange={handleVideo}
+          />
+        </tr>
+        <Button onClick={hanldeAdd}>Hoàn thành</Button>
       </Table>
     </Container>
   );

@@ -47,25 +47,7 @@ export const CardBody = styled.div`
   margin-top: 10px;
 `;
 
-export const Table = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 20px;
-  font-size: 20px;
-  padding: 5px 10px;
-  color: ${({ theme }) => theme.text};
-`;
-
 export const Button = styled.button`
-  /* color: ${({ theme }) => theme.text};
-  width: max-content;
-  background: ${({ theme }) => theme.bg3};
-  border: 1px solid black;
-  border-radius: 20px;
-  margin-top: 20px;
-  box-shadow: 0 0 10px #0f0c29; */
   border-radius: 20px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
@@ -80,7 +62,7 @@ export const Button = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   :active {
     transform: scale(0.95);
@@ -102,13 +84,44 @@ export const Span = styled.span`
   color: white;
   background-color: #6100d4;
 `;
-export const Modal = styled.div`
+export const Table = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 5px 10px;
+  color: ${({ theme }) => theme.text};
+`;
+export const TableEdit = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  margin-top: 10px;
+  gap: 20px;
+  font-size: 20px;
+  padding: 5px 10px;
+  color: ${({ theme }) => theme.text};
+`;
+export const Modal = styled.div`
+  display: grid;
+  height: 90vh;
+  border: none;
+  border-radius: 10px;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  left: 20%;
+  left: 12%;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent, #4bb6b7);
+    border: none;
+    border-radius: 6px;
+  }
 `;
 
 export const ModalInfo = styled.div`
@@ -117,12 +130,11 @@ export const ModalInfo = styled.div`
   justify-content: center;
   gap: 10px;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0 0 10px black;
-  width: 60vw;
+  border-radius: 10px;
+  width: 80vw;
   height: max-content;
   input {
-    width: 100%;
+    width: 40vw;
     height: 40px;
     display: flex;
     flex-direction: row;
@@ -144,7 +156,7 @@ export const Gender = styled.div`
 `;
 
 export const ButtonDone = styled.button`
-  border-radius: 20px;
+  border-radius: 15px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
   color: #fff;
@@ -152,39 +164,53 @@ export const ButtonDone = styled.button`
   font-weight: 700;
   width: max-content;
   height: max-content;
-  transform: translateX(50px) translateY(300px);
   letter-spacing: 1px;
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
-  /* :active {
-    transform: scale(0.95);
-  } */
   :focus {
     outline: none;
   }
 `;
 
 export const ButtonClose = styled.button`
-  transform: translate(570px, -66px);
-  border-radius: 20px;
+  border-radius: 15px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
   color: #fff;
   font-size: 15px;
   font-weight: 700;
   width: max-content;
+  height: max-content;
   letter-spacing: 1px;
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   :focus {
     outline: none;
+  }
+`;
+export const Tr = styled.tr``;
+export const Th = styled.th`
+  svg {
+    font-size: 16px;
+  }
+`;
+export const Td = styled.td``;
+export const Input = styled.input``;
+export const InputFile = styled.input`
+  ::-webkit-file-upload-button {
+    background: #000;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
   }
 `;
