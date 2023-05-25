@@ -49,7 +49,7 @@ export const Question = styled.div`
     width: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent, #30ff00);
+    background: linear-gradient(transparent, #33ccff);
     border-radius: 6px;
   }
 `;
@@ -148,7 +148,7 @@ export const ButtonSubmit = styled.button`
   position: absolute;
   margin-top: 0%;
   margin-left: 80%;
-  background: linear-gradient(transparent, #30ff00);
+  background: linear-gradient(transparent, #33ccff);
   border: 1px solid black;
   border-radius: 15px;
   cursor: pointer;

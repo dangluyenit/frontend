@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Container, Table, Td, Th, Tr } from "./style";
 import axios from "axios";
 import moment from "moment";
+import numeral from "numeral";
+import "moment/locale/vi";
 const Result = () => {
   const [score, setScore] = useState([]);
   const id = localStorage.getItem("code");
+
   useEffect(() => {
     axios
       .get(`http://localhost:4000/api/v1/scores/student/${id}`)
@@ -28,9 +31,9 @@ const Result = () => {
         {score.map((data) => (
           <Tr>
             <Td>{data.test.name}</Td>
-            <Td>{data.score}</Td>
+            <Td>{numeral(data.score).format("0.0")}</Td>
             <Td>
-              {moment(data.submissionTime).format("MMMM Do YYYY, h:mm a")}
+              {moment(data.submissionTime).locale("vi").format("L, h:mm a")}
             </Td>
           </Tr>
         ))}

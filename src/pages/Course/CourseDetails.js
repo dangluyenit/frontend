@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
+
 const Container = styled.div`
   width: 90vw;
   display: grid;
@@ -26,7 +27,7 @@ const Content = styled.div`
     transform: scale(0.95);
   }
   :focus {
-    background: #c0c0c0;
+    background: rgb(75, 182, 183);
   }
 `;
 const Lesson = styled.div`
@@ -51,7 +52,7 @@ const Recommendation = styled.div`
     width: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent, #cc33ff);
+    background: linear-gradient(transparent, #33ccff);
     border-radius: 6px;
   }
 `;
