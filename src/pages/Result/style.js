@@ -2,21 +2,30 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 85vw;
-  height: max-content;
-  display: flex;
+  height: 90vh;
+  display: grid;
   justify-content: center;
   align-items: center;
   position: relative;
   left: 3%;
-  background: linear-gradient(to bottom right, white 0%, #3399ff 70%);
-  border-radius: 2rem;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent, #3399ff);
+    border: none;
+    border-radius: 6px;
+  }
+  /* background: linear-gradient(to bottom right, white 0%, #3399ff 70%);
+  border-radius: 2rem; */
 `;
 export const Table = styled.table`
   display: table;
   width: 80vw;
   height: 100vh;
   background: linear-gradient(to bottom right, white 0%, #3399ff 70%);
-  border-radius: 2rem;
+  border-radius: 10px;
   overflow: hidden;
 `;
 export const Tr = styled.tr`

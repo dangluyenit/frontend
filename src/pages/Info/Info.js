@@ -19,8 +19,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Info = () => {
-  // const [showModal, setShowModal] = useState(false);
-  // const handleClose = () => setShowModal(false);
   const navigate = useNavigate();
   const [info, setInfo] = useState({
     name: "",
@@ -34,11 +32,10 @@ const Info = () => {
   useEffect(() => {
     const code = localStorage.getItem("code");
     const role = localStorage.getItem("role");
-    console.log(role);
+
     axios
       .get(`http://localhost:4000/api/v1/${role}/${code}`)
       .then((response) => {
-        console.log(response.data.metadata);
         setInfo(response.data.metadata);
       })
       .catch((error) => {

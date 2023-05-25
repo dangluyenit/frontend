@@ -31,53 +31,33 @@ const Th = styled.th`
 const Td = styled.td`
   height: 50px;
 `;
-// const ButtonDelete = styled.button`
-//   border-radius: 20px;
-//   border: 1px solid #4bb6b7;
-//   background-color: #4bb6b7;
-//   color: black;
-//   font-size: 15px;
-//   font-weight: 700;
-//   margin: 10px;
-//   width: max-content;
-//   padding: 12px 20px;
-//   letter-spacing: 1px;
-//   text-transform: capitalize;
-//   cursor: pointer;
-//   transform: translateY(10px);
-//   :hover {
-//     opacity: 0.5;
-//   }
-// `;
-const Student = () => {
-  const [student, setStudent] = useState([]);
+const Test = () => {
+  const [test, setTest] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/v1/student")
+      .get("http://localhost:4000/api/v1/tests")
       .then((result) => {
         console.log(result);
-        setStudent(result.data.metadata);
+        setTest(result.data.metadata);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
   return (
     <Container>
       <Table>
         <Tr>
-          <Th>Họ và tên</Th>
-          <Th>Mã sinh viên</Th>
-          <Th>Email</Th>
+          <Th>Tên bài thi</Th>
+          <Th>Mã giáo viên</Th>
+          <Th>Số lượng câu hỏi</Th>
         </Tr>
-        {student.map((item, index) => (
-          <Tr key={index !== null}>
+        {test.map((item) => (
+          <Tr>
             <Td>{item.name}</Td>
-            <Td>{item.studentCode}</Td>
-            <Td>{item.email}</Td>
-            <Td></Td>
+            <Td>{item.teacherCode}</Td>
+            <Td>{item.quantityQuestion}</Td>
           </Tr>
         ))}
       </Table>
@@ -85,4 +65,4 @@ const Student = () => {
   );
 };
 
-export default Student;
+export default Test;

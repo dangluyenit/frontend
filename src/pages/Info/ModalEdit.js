@@ -35,16 +35,20 @@ const ModalEdit = () => {
     email: "",
     image: "",
   });
-
+  const [avatar, setAvatar] = useState("");
+  const handleReviewAvatar = (e) => {
+    const file = e.target.files[0];
+    file.preview = URL.createObjectURL(file);
+    setAvatar(file);
+  };
   const navigate = useNavigate();
   useEffect(() => {
     const code = localStorage.getItem("code");
     const role = localStorage.getItem("role");
-    console.log(role);
+
     axios
       .get(`http://localhost:4000/api/v1/${role}/${code}`)
       .then((response) => {
-        console.log(response.data.metadata);
         setValues({
           ...values,
           name: response.data.metadata.name,
@@ -66,9 +70,18 @@ const ModalEdit = () => {
     e.preventDefault();
     const code = localStorage.getItem("code");
     const role = localStorage.getItem("role");
-
+    const formData = new FormData();
+    formData.append("image", avatar);
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" },
+    };
     axios
-      .put(`http://localhost:4000/api/v1/${role}/${code}`, values)
+      .put(
+        `http://localhost:4000/api/v1/${role}/${code}`,
+        values,
+        formData,
+        config
+      )
       .then((response) => {
         console.log(response);
         navigate("/info");
@@ -167,7 +180,8 @@ const ModalEdit = () => {
               Hình ảnh
             </Th>
             <Td>: </Td>
-            <InputFile type="file" placeholder="Images" />
+            <InputFile type="file" onChange={handleReviewAvatar} />
+            {avatar && <img src={avatar.preview} alt="" width="100%" />}
           </Tr>
         </TableEdit>
         <ButtonDone onClick={handleEdit}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Container, Links, Table, Td, Th, Tr } from "./style";
+import { Container, Table, Td, Th, Tr } from "./style";
 import axios from "axios";
-
+import moment from "moment";
 const Result = () => {
   const [score, setScore] = useState([]);
   const id = localStorage.getItem("code");
@@ -29,9 +29,8 @@ const Result = () => {
           <Tr>
             <Td>{data.test.name}</Td>
             <Td>{data.score}</Td>
-            <Td>{data.submissionTime}</Td>
             <Td>
-              <Links href="/result/details/:id">Xem chi tiết</Links>
+              {moment(data.submissionTime).format("MMMM Do YYYY, h:mm a")}
             </Td>
           </Tr>
         ))}

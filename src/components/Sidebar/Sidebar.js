@@ -118,7 +118,7 @@ const linksArray = [
     to: "/test",
   },
   {
-    label: "Kết quả",
+    label: "Lịch sử làm bài",
     icon: <BsCalendar2EventFill />,
     to: "/result",
   },

@@ -31,58 +31,36 @@ const Th = styled.th`
 const Td = styled.td`
   height: 50px;
 `;
-// const ButtonDelete = styled.button`
-//   border-radius: 20px;
-//   border: 1px solid #4bb6b7;
-//   background-color: #4bb6b7;
-//   color: black;
-//   font-size: 15px;
-//   font-weight: 700;
-//   margin: 10px;
-//   width: max-content;
-//   padding: 12px 20px;
-//   letter-spacing: 1px;
-//   text-transform: capitalize;
-//   cursor: pointer;
-//   transform: translateY(10px);
-//   :hover {
-//     opacity: 0.5;
-//   }
-// `;
-const Student = () => {
-  const [student, setStudent] = useState([]);
+const BankQuestion = () => {
+  const [bankQuestion, setBankQuestion] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/v1/student")
+      .get("http://localhost:4000/api/v1/bank-questions")
       .then((result) => {
         console.log(result);
-        setStudent(result.data.metadata);
+        setBankQuestion(result.data.metadata);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
   return (
     <Container>
       <Table>
         <Tr>
-          <Th>Họ và tên</Th>
-          <Th>Mã sinh viên</Th>
-          <Th>Email</Th>
+          <Th>Tên ngân hàng câu hỏi</Th>
         </Tr>
-        {student.map((item, index) => (
-          <Tr key={index !== null}>
-            <Td>{item.name}</Td>
-            <Td>{item.studentCode}</Td>
-            <Td>{item.email}</Td>
-            <Td></Td>
-          </Tr>
-        ))}
+        {bankQuestion.map((data) => {
+          return (
+            <Tr>
+              <Td>{data.name}</Td>
+            </Tr>
+          );
+        })}
       </Table>
     </Container>
   );
 };
 
-export default Student;
+export default BankQuestion;

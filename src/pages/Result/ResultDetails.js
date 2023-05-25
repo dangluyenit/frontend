@@ -1,6 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+
 import styled from "styled-components";
 const Container = styled.div`
   width: 85vw;
@@ -28,8 +27,8 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  gap: 20rem;
+  flex-direction: column;
+  gap: 20px;
 `;
 const Score = styled.div`
   font-size: 20px;
@@ -44,32 +43,17 @@ const Code = styled.div`
   font-weight: 600;
 `;
 const ResultDetails = () => {
-  const id = useParams();
-  const [result, setResult] = useState({
-    studentCode: "",
-    score: "",
-  });
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/api/v1/scores/${id}`)
-      .then((response) => {
-        console.log(response);
-        setResult(response.data.metadata);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // eslint-disable-next-line
-  }, []);
+  const code = localStorage.getItem("code");
+  const score = localStorage.getItem("score");
+  const name = localStorage.getItem("test");
   return (
     <Container>
       <Card>
         <Title>Kết quả bài thi</Title>
-
         <Content>
-          <Code>Mã sinh viên:{result.studentCode}</Code>
-          <Name>Bài thi:</Name>
-          <Score>Điểm của bạn là:{result.score}</Score>
+          <Code>Mã sinh viên: {code}</Code>
+          <Name>Bài thi: {name}</Name>
+          <Score>Điểm của bạn là: {score}</Score>
         </Content>
       </Card>
     </Container>

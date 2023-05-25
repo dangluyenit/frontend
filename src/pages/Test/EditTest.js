@@ -90,7 +90,7 @@ const EditTest = () => {
         console.log(error);
       });
     // eslint-disable-next-line
-  }, [values]);
+  }, []);
   const handleUpdate = (e) => {
     e.preventDefault();
     axios

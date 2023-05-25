@@ -15,7 +15,7 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import { useNavigate, useParams } from "react-router-dom";
 
-const TestDetails = ({ seconds }) => {
+const TestDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [checkValues, setCheckValues] = useState([]);
@@ -32,9 +32,8 @@ const TestDetails = ({ seconds }) => {
     if (seconds < 10) seconds = "0" + seconds;
     return minutes + " : " + seconds;
   };
-  const [countdown, setCountDown] = useState({
-    examDuration: "",
-  });
+  const [countdown, setCountDown] = useState();
+
   const timerId = useRef();
   useEffect(() => {
     timerId.current = setInterval(() => {
@@ -97,7 +96,9 @@ const TestDetails = ({ seconds }) => {
     axios
       .get(`http://localhost:4000/api/v1/tests/${id}`)
       .then((response) => {
-        setCountDown(response.data.metadata);
+        console.log(response);
+        localStorage.setItem("test", response.data.metadata.name);
+        setCountDown(response.data.metadata.examDuration);
       })
       .catch((error) => {
         console.log(error);
@@ -113,19 +114,21 @@ const TestDetails = ({ seconds }) => {
       return temp.push({ id: id });
     });
     axios
-      .post("http://localhost:4000/api/v1/question-answers/check-answers", {
+      .post("http://localhost:4000/api/v1/question-answers/score-calculation", {
         idTest: id,
         answers: temp,
         studentCode: code,
       })
       .then((response) => {
         console.log(response);
-        navigate("/");
+        localStorage.setItem("score", response.data.metadata.score);
+        navigate("/result/details");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   return (
     <Container>
       <Question>
@@ -155,7 +158,7 @@ const TestDetails = ({ seconds }) => {
           ))}
         </QuestionSection>
       </Question>
-      <Timer>{formatTime()} </Timer>
+      <Timer>{formatTime(countdown)}</Timer>
       <ButtonSubmit onClick={handleCheckAnswer}>Nộp bài</ButtonSubmit>
     </Container>
   );

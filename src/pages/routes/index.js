@@ -20,6 +20,9 @@ import Student from "../Admin/page/Student/Student";
 import EditCourse from "../Course/EditCourse";
 import EditTest from "../Test/EditTest";
 import ResultDetails from "../Result/ResultDetails";
+import Courses from "../Admin/page/Course/Course";
+import Tests from "../Admin/page/Test/Test";
+import BankQuestion from "../Admin/page/BankQuestion/BankQuestion";
 const publicRoutes = [
   {
     path: "/",
@@ -94,7 +97,7 @@ const publicRoutes = [
     component: EditTest,
   },
   {
-    path: "/result/details/:id",
+    path: "/result/details",
     component: ResultDetails,
   },
 ];
@@ -110,6 +113,18 @@ const privateRoutes = [
   {
     path: "/student",
     component: Student,
+  },
+  {
+    path: "/courses",
+    component: Courses,
+  },
+  {
+    path: "/tests",
+    component: Tests,
+  },
+  {
+    path: "/bank-questions",
+    component: BankQuestion,
   },
 ];
 export { publicRoutes, privateRoutes };

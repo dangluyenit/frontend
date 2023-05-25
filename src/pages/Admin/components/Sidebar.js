@@ -1,7 +1,7 @@
 import React from "react";
 import Badge from "./Badge";
 import styled from "styled-components";
-import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
+import { RiHomeLine, RiFileCopyLine, RiBankFill } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlineLogout } from "react-icons/ai";
 import AvatarImage from "../../../assets/avatar.jpg";
@@ -101,15 +101,18 @@ const Sidebar = () => {
             <h3>Sinh viên</h3>
             <FaUserAlt />
           </Link>
-          <Link>
+          <Link onClick={() => navigate("/courses")}>
             <h3>Khoá học</h3>
             <RiFileCopyLine />
           </Link>
-          <Link>
+          <Link onClick={() => navigate("/tests")}>
             <h3>Bài thi</h3>
             <FaWallet />
           </Link>
-
+          <Link onClick={() => navigate("/bank-questions")}>
+            <h3>Ngân hàng câu hỏi</h3>
+            <RiBankFill />
+          </Link>
           <Link
             onClick={() => {
               localStorage.removeItem("token");
