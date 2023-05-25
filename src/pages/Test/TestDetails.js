@@ -40,11 +40,13 @@ const TestDetails = () => {
       setCountDown((pre) => pre - 1);
     }, 1000);
     return () => clearInterval(timerId.current);
-  }, []);
+  }, [countdown]);
   useEffect(() => {
     if (countdown <= 0) {
       clearInterval(timerId.current);
+      handleCheckAnswer();
     }
+    // eslint-disable-next-line
   }, [countdown]);
   const uncheckAnswer = (event) => {
     const value = event.target;
@@ -107,8 +109,7 @@ const TestDetails = () => {
   }, []);
   const code = localStorage.getItem("code");
 
-  const handleCheckAnswer = (e) => {
-    e.preventDefault();
+  function handleCheckAnswer() {
     const temp = [];
     checkValues.map((id) => {
       return temp.push({ id: id });
@@ -127,7 +128,7 @@ const TestDetails = () => {
       .catch((error) => {
         console.log(error);
       });
-  };
+  }
 
   return (
     <Container>

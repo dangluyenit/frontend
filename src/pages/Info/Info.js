@@ -36,6 +36,7 @@ const Info = () => {
     axios
       .get(`http://localhost:4000/api/v1/${role}/${code}`)
       .then((response) => {
+        console.log(response);
         setInfo(response.data.metadata);
       })
       .catch((error) => {
@@ -46,7 +47,11 @@ const Info = () => {
     <Container>
       <LeftInfo>
         <CardHeader>
-          <img className="profile_img" src={info.image} alt="" />
+          <img
+            className="profile_img"
+            src={`http://localhost:4000/${info.image}`}
+            alt=""
+          />
         </CardHeader>
         <CardBody>
           <Span>

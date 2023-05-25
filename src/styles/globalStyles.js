@@ -12,11 +12,11 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Poppins', sans-serif;
         letter-spacing: .6px;
         &::-webkit-scrollbar {
-    width: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent, #CC33FF);
-    border-radius: 6px;
-  }
+          width: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: linear-gradient(transparent, #CC33FF);
+          border-radius: 6px;
+        }
     }
 `;

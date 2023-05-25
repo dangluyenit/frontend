@@ -26,6 +26,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const ModalEdit = () => {
+  const [avatar, setAvatar] = useState();
   const [values, setValues] = useState({
     name: "",
     sex: "",
@@ -35,7 +36,7 @@ const ModalEdit = () => {
     email: "",
     image: "",
   });
-  const [avatar, setAvatar] = useState("");
+
   const handleReviewAvatar = (e) => {
     const file = e.target.files[0];
     file.preview = URL.createObjectURL(file);
@@ -71,17 +72,23 @@ const ModalEdit = () => {
     const code = localStorage.getItem("code");
     const role = localStorage.getItem("role");
     const formData = new FormData();
+
+    formData.append("name", values.name);
+    formData.append("sex", values.sex);
+    formData.append("phone", values.phone);
+    formData.append("dob", values.dob);
+    formData.append("address", values.address);
+    formData.append("email", values.email);
     formData.append("image", avatar);
+
     const config = {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { "content-type": "multipart/form-data" },
     };
+
+    // axios.post(URL, data, config).then(...)
+
     axios
-      .put(
-        `http://localhost:4000/api/v1/${role}/${code}`,
-        values,
-        formData,
-        config
-      )
+      .put(`http://localhost:4000/api/v1/${role}/${code}`, formData, config)
       .then((response) => {
         console.log(response);
         navigate("/info");
@@ -181,7 +188,6 @@ const ModalEdit = () => {
             </Th>
             <Td>: </Td>
             <InputFile type="file" onChange={handleReviewAvatar} />
-            {avatar && <img src={avatar.preview} alt="" width="100%" />}
           </Tr>
         </TableEdit>
         <ButtonDone onClick={handleEdit}>
