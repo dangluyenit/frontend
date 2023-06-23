@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
-const Table = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +59,7 @@ const Button = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    color: black;
   }
   :active {
     transform: scale(0.95);
@@ -82,6 +82,7 @@ const AddCourse = () => {
   const handleCourse = (e) => {
     e.preventDefault();
     console.log({ name, teacherCode });
+
     axios
       .post("http://localhost:4000/api/v1/courses", {
         name: name,
@@ -94,12 +95,15 @@ const AddCourse = () => {
       })
       .catch((error) => {
         console.log(error.response);
+        if (error.response.status === 400) {
+          alert("Tên khoá học đã tồn tại");
+        }
       });
   };
   const code = localStorage.getItem("code");
   return (
     <Container>
-      <Table>
+      <Form onSubmit={handleCourse}>
         <Title>Thêm khoá học</Title>
         <tr>
           <th>Mã giáo viên</th>
@@ -120,10 +124,11 @@ const AddCourse = () => {
             placeholder="Tên khoá học"
             value={name}
             onChange={handleName}
+            required
           />
         </tr>
-        <Button onClick={handleCourse}>Hoàn thành</Button>
-      </Table>
+        <Button type="submit">Hoàn thành</Button>
+      </Form>
     </Container>
   );
 };

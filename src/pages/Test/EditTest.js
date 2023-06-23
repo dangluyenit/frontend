@@ -58,7 +58,7 @@ const Button = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    color: black;
   }
   :active {
     transform: scale(0.95);
@@ -67,6 +67,10 @@ const Button = styled.button`
     outline: none;
   }
 `;
+const Tr = styled.tr``;
+const Th = styled.th``;
+const Td = styled.td``;
+const Input = styled.input``;
 
 const EditTest = () => {
   const navigate = useNavigate();
@@ -107,25 +111,25 @@ const EditTest = () => {
     <Container>
       <Table>
         <Title>Chỉnh sửa bài thi</Title>
-        <tr>
-          <th>Mã giáo viên</th>
-          <td>: </td>
-          <input type="text" placeholder="Mã giáo viên" value={code} readOnly />
-        </tr>
-        <tr>
-          <th>Tên bài thi</th>
-          <td>: </td>
-          <input
+        <Tr>
+          <Th>Mã giáo viên</Th>
+          <Td>: </Td>
+          <Input type="text" placeholder="Mã giáo viên" value={code} readOnly />
+        </Tr>
+        <Tr>
+          <Th>Tên bài thi</Th>
+          <Td>: </Td>
+          <Input
             type="text"
             placeholder="Tên bài thi"
             value={values.name}
             onChange={(e) => setValues({ ...values, name: e.target.value })}
           />
-        </tr>
-        <tr>
-          <th>Thời gian làm bài</th>
-          <td>: </td>
-          <input
+        </Tr>
+        <Tr>
+          <Th>Thời gian làm bài</Th>
+          <Td>: </Td>
+          <Input
             type="number"
             placeholder="Thời gian làm bài"
             value={values.examDuration}
@@ -133,7 +137,8 @@ const EditTest = () => {
               setValues({ ...values, examDuration: e.target.value })
             }
           />
-        </tr>
+        </Tr>
+
         <Button onClick={handleUpdate}>Hoàn thành</Button>
       </Table>
     </Container>

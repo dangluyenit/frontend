@@ -27,7 +27,8 @@ const Content = styled.div`
     transform: scale(0.95);
   }
   :focus {
-    background: rgb(75, 182, 183);
+    /* background: rgb(75, 182, 183); */
+    background: #33ccff;
   }
 `;
 const Lesson = styled.div`

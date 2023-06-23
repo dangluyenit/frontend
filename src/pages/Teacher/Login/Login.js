@@ -29,6 +29,7 @@ const Login = () => {
   const [teacherCode, setTeacherCode] = useState("");
   const history = useNavigate();
   const [loading, setLoading] = useState(false);
+
   const handleTCode = (e) => {
     setTeacherCode(e.target.value);
   };
@@ -44,8 +45,8 @@ const Login = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      history("/");
-    }, 3000);
+    }, 1500);
+
     axios
       .post("http://localhost:4000/api/v1/auth/teacher/sign-in", {
         email: email,
@@ -63,13 +64,14 @@ const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("role", role);
         localStorage.setItem("code", code);
+        history("/");
       })
       .catch((error) => {
         console.log(error.response);
         if (error.response.status === 400) {
-          alert("email or mật khẩu không đúng?");
+          alert("email hoặc mật khẩu không đúng?");
         } else {
-          alert("server error");
+          alert("Lỗi server");
         }
       });
   };
@@ -95,7 +97,7 @@ const Login = () => {
         if (error.response.status === 400) {
           alert("email đã tồn tại");
         } else {
-          alert("server error");
+          alert("Lỗi server");
         }
       });
   };
@@ -114,7 +116,9 @@ const Login = () => {
                 placeholder="Email"
                 value={email}
                 onChange={handleEmail}
+                required
               />
+
               <Input
                 type="password"
                 name="password"
@@ -122,6 +126,7 @@ const Login = () => {
                 placeholder="Mật khẩu"
                 value={password}
                 onChange={handlePassword}
+                required
               />
 
               <Links href="#">Quên mật khẩu?</Links>
@@ -149,6 +154,7 @@ const Login = () => {
                 placeholder="Mã giáo viên"
                 value={teacherCode}
                 onChange={handleTCode}
+                required
               />
               <Input
                 type="email"
@@ -157,6 +163,7 @@ const Login = () => {
                 placeholder="Email"
                 value={email}
                 onChange={handleEmail}
+                required
               />
               <Input
                 type="password"
@@ -165,6 +172,7 @@ const Login = () => {
                 placeholder="Mật khẩu"
                 value={password}
                 onChange={handlePassword}
+                required
               />
               <Input
                 type="password"
@@ -173,6 +181,7 @@ const Login = () => {
                 placeholder="Nhập lại mật khẩu"
                 value={password}
                 onChange={handlePassword}
+                required
               />
               <Links href="#">Đã có tài khoản?</Links>
               {loading ? (

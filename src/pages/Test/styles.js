@@ -24,11 +24,50 @@ export const Title = styled.h2`
   text-align: center;
   color: ${({ theme }) => theme.text};
 `;
+export const TitleTest = styled.h2`
+  width: max-content;
+  height: 100%;
+  font-size: 25px;
+  color: ${({ theme }) => theme.text};
+  position: absolute;
+  top: 0;
+  left: 50vw;
+`;
+export const TestTitle = styled.h3`
+  color: ${({ theme }) => theme.button};
+  width: max-content;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px;
+  position: absolute;
+  margin-top: 0%;
+  margin-left: 5%;
+  /* background: transparent;
+  border: 2px solid black;
+  border-radius: 10px; */
+`;
+export const CountQuestion = styled.div`
+  color: ${({ theme }) => theme.button};
+  width: max-content;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px;
+  position: absolute;
+  margin-top: 0%;
+  margin-left: 30%;
+  /* background: transparent;
+  border: 2px solid black;
+  border-radius: 10px; */
+`;
 export const Image = styled.div`
   width: 250px;
   height: 25vh;
   border: 10px solid white;
-  border-radius: 30px;
+  border-radius: 20px;
   background: linear-gradient(to left, #9966cc, #ff6633) right;
   :hover {
     transform: scale(1.05);
@@ -134,7 +173,7 @@ export const ButtonClearn = styled.button`
   cursor: pointer;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-3px);
+    transform: scale(0.95);
   }
   &:active {
     box-shadow: none;
@@ -147,17 +186,17 @@ export const ButtonSubmit = styled.button`
   height: min-content;
   position: absolute;
   margin-top: 0%;
-  margin-left: 80%;
+  margin-left: 75%;
   background: linear-gradient(transparent, #33ccff);
   border: 1px solid black;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   &:disabled {
     pointer-events: none;
   }
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-5px);
+    transform: scale(0.95);
   }
   &:active {
     box-shadow: none;
@@ -189,7 +228,7 @@ export const ButtonEdit = styled.button`
   border-radius: 20px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
-  color: ${({ theme }) => theme.button};
+  color: #fff;
   font-size: 15px;
   font-weight: 700;
   margin: 15px;
@@ -200,10 +239,10 @@ export const ButtonEdit = styled.button`
   cursor: pointer;
   transform: translateX(50px);
   :hover {
-    opacity: 0.5;
+    color: black;
   }
   svg {
-    font-size: 10px;
+    font-size: 15px;
   }
 `;
 export const Timer = styled.div`
@@ -216,7 +255,7 @@ export const Timer = styled.div`
   padding: 10px;
   position: absolute;
   margin-top: 0%;
-  margin-left: 65%;
+  margin-left: 55%;
   background: transparent;
   border: 2px solid black;
   border-radius: 10px;

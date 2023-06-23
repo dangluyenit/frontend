@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonEdit, Card, Container, Image, Title } from "./styles";
+import {
+  Button,
+  ButtonEdit,
+  Card,
+  Container,
+  Image,
+  Title,
+  TitleTest,
+} from "./styles";
 import { useNavigate } from "react-router-dom";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import axios from "axios";
@@ -22,11 +30,11 @@ const Test = (props) => {
 
   return (
     <Container>
-      <Title>Bài thi</Title>
+      <TitleTest>Bài thi</TitleTest>
       {test.map((post) => (
         <Card key={post.id}>
           {localStorage.getItem("role") === "TEACHER" ? (
-            <Image onClick={() => navigate(`/test/addquestion/${post.id}`)}>
+            <Image onClick={() => navigate(`/test/details/${post.id}`)}>
               <Title>{post.name}</Title>
             </Image>
           ) : (

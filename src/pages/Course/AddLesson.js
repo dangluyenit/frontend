@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { FaRegEdit } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const Table = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 10px black;
   width: 50vw;
-  height: 70vh;
+  height: 75vh;
   position: relative;
   left: 0%;
   top: 100px;
@@ -79,13 +80,14 @@ const Button = styled.button`
   font-weight: 700;
   margin: 10px;
   width: max-content;
+  height: max-content;
   padding: 12px 80px;
   letter-spacing: 1px;
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    color: black;
   }
   :active {
     transform: scale(0.95);
@@ -106,7 +108,7 @@ const Content = styled.div`
   background: transparent;
   border-radius: 10px;
   background: #4bb6b7;
-  cursor: pointer;
+
   :active {
     transform: scale(0.95);
   }
@@ -120,6 +122,7 @@ const Recommendation = styled.div`
   align-items: center;
   width: 300px;
   height: 300px;
+  font-weight: 500;
   background: transparent;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -130,12 +133,26 @@ const Recommendation = styled.div`
     border-radius: 6px;
   }
 `;
+const Tr = styled.tr``;
+const Th = styled.th``;
+const Td = styled.td``;
+const Input = styled.input``;
+const ButtonEidt = styled.button`
+  cursor: pointer;
+  :hover {
+    svg {
+      color: white;
+    }
+  }
+`;
 const AddLesson = () => {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [video, setVideo] = useState("");
   const [lesson, setLesson] = useState([]);
   const [reload, setReload] = useState(false);
+  const navigate = useNavigate();
+
   const handleVideo = (e) => {
     setVideo(e.target.value);
   };
@@ -152,6 +169,7 @@ const AddLesson = () => {
     axios
       .get(`http://localhost:4000/api/v1/lessons/courses/${id}`)
       .then((response) => {
+        console.log(response);
         setLesson(response.data.metadata);
         setReload(!reload);
       })
@@ -180,48 +198,53 @@ const AddLesson = () => {
     <Container>
       <Table>
         <Title>Thêm bài học</Title>
-        <tr>
-          <th>Mã giáo viên</th>
-          <td>: </td>
-          <input type="text" placeholder="Mã giáo viên" value={code} readOnly />
-        </tr>
-        <tr>
-          <th>Tên bài học</th>
-          <td>: </td>
-          <input
+        <Tr>
+          <Th>Mã giáo viên</Th>
+          <Td>: </Td>
+          <Input type="text" placeholder="Mã giáo viên" value={code} readOnly />
+        </Tr>
+        <Tr>
+          <Th>Tên bài học</Th>
+          <Td>: </Td>
+          <Input
             type="text"
             placeholder="Tên bài học"
             value={name}
             onChange={handleName}
           />
-        </tr>
-        <tr>
-          <th>Nội dung bài học</th>
-          <td>: </td>
-          <input
+        </Tr>
+        <Tr>
+          <Th>Nội dung bài học</Th>
+          <Td>: </Td>
+          <Input
             type="text"
             placeholder="Nội dung bài học"
             value={content}
             onChange={handleContent}
           />
-        </tr>
-        <tr>
-          <th>Video</th>
-          <td>: </td>
-          <input
+        </Tr>
+        <Tr>
+          <Th>Video</Th>
+          <Td>: </Td>
+          <Input
             type="text"
             placeholder="Video"
             value={video}
             onChange={handleVideo}
           />
-        </tr>
+        </Tr>
         <Button onClick={hanldeAdd}>Hoàn thành</Button>
       </Table>
       <TableList>
         <Title>Danh sách bài học</Title>
         <Recommendation>
           {lesson.map((data) => (
-            <Content>{data.name}</Content>
+            <Content>
+              {data.name}
+              <ButtonEidt onClick={() => navigate(`/lesson/${data.id}`)}>
+                <FaRegEdit />
+              </ButtonEidt>
+            </Content>
           ))}
         </Recommendation>
       </TableList>

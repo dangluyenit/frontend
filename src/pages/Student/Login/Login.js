@@ -45,8 +45,8 @@ const Login = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      history("/");
-    }, 3000);
+    }, 1500);
+
     axios
       .post("http://localhost:4000/api/v1/auth/student/sign-in", {
         email: email,
@@ -66,6 +66,7 @@ const Login = () => {
         localStorage.setItem("role", role);
         localStorage.setItem("code", code);
         console.log(role);
+        history("/");
       })
       .catch((error) => {
         console.log(error.response);
@@ -82,7 +83,7 @@ const Login = () => {
     setTimeout(() => {
       setLoading(false);
       history("/login/student");
-    }, 3000);
+    }, 1500);
     axios
       .post("http://localhost:4000/api/v1/auth/student/sign-up", {
         studentCode: studentCode,
@@ -116,7 +117,9 @@ const Login = () => {
                 placeholder="Email"
                 value={email}
                 onChange={handleEmail}
+                required
               />
+
               <Input
                 type="password"
                 name="password"
@@ -124,7 +127,9 @@ const Login = () => {
                 placeholder="Mật khẩu"
                 value={password}
                 onChange={handlePassword}
+                required
               />
+
               <Links href="#">Quên mật khẩu?</Links>
               {loading ? (
                 <Button type="submit">
@@ -150,6 +155,7 @@ const Login = () => {
                 placeholder="Mã sinh viên"
                 value={studentCode}
                 onChange={handleSCode}
+                required
               />
               <Input
                 type="email"
@@ -158,6 +164,7 @@ const Login = () => {
                 placeholder="Email"
                 value={email}
                 onChange={handleEmail}
+                required
               />
               <Input
                 type="password"
@@ -166,6 +173,7 @@ const Login = () => {
                 placeholder="Mật khẩu"
                 value={password}
                 onChange={handlePassword}
+                required
               />
               <Input
                 type="password"
@@ -174,6 +182,7 @@ const Login = () => {
                 placeholder="Nhập lại mật khẩu"
                 value={password}
                 onChange={handlePassword}
+                required
               />
               <Links href="#">Đã có tài khoản?</Links>
               {loading ? (

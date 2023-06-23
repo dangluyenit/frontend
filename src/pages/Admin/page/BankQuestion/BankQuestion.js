@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { BiMessageSquareAdd } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+
 const Container = styled.div`
   display: flex;
   width: 75vw;
-  height: max-content;
+  height: 100% !important;
   position: relative;
   top: 0;
   left: 1%;
@@ -31,9 +34,15 @@ const Th = styled.th`
 const Td = styled.td`
   height: 50px;
 `;
+
+const Button = styled.button`
+  svg {
+    font-size: 40px;
+  }
+`;
 const BankQuestion = () => {
   const [bankQuestion, setBankQuestion] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get("http://localhost:4000/api/v1/bank-questions")
@@ -59,6 +68,10 @@ const BankQuestion = () => {
           );
         })}
       </Table>
+
+      <Button>
+        <BiMessageSquareAdd onClick={() => navigate("/bank-questions/add")} />
+      </Button>
     </Container>
   );
 };

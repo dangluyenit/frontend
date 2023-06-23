@@ -62,13 +62,16 @@ export const Button = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 1px;
+    color: black;
   }
   :active {
     transform: scale(0.95);
   }
   :focus {
     outline: none;
+  }
+  svg {
+    font-size: 20px;
   }
 `;
 export const Span = styled.span`
@@ -128,7 +131,7 @@ export const ModalInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   background: white;
   border-radius: 10px;
   width: 80vw;
@@ -156,7 +159,7 @@ export const Gender = styled.div`
 `;
 
 export const ButtonDone = styled.button`
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
   color: #fff;
@@ -169,7 +172,7 @@ export const ButtonDone = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 1px;
+    color: black;
   }
   :focus {
     outline: none;
@@ -177,7 +180,7 @@ export const ButtonDone = styled.button`
 `;
 
 export const ButtonClose = styled.button`
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
   color: #fff;
@@ -190,7 +193,7 @@ export const ButtonClose = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 1px;
+    color: black;
   }
   :focus {
     outline: none;
@@ -199,7 +202,7 @@ export const ButtonClose = styled.button`
 export const Tr = styled.tr``;
 export const Th = styled.th`
   svg {
-    font-size: 16px;
+    font-size: 20px;
   }
 `;
 export const Td = styled.td``;

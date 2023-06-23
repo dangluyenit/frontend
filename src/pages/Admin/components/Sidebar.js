@@ -69,12 +69,19 @@ const Link = styled.li`
   gap: 1rem;
   color: #e4e4e4;
   cursor: pointer;
+
   h3 {
     font-weight: 300;
   }
   svg {
     font-size: 1.1rem;
     margin-top: 8px;
+  }
+  :focus {
+    width: max-content;
+    height: 30px;
+    background: gray;
+    border-radius: 10px;
   }
 `;
 
@@ -89,27 +96,27 @@ const Sidebar = () => {
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <Link onClick={() => navigate("/admin")}>
+          <Link onClick={() => navigate("/admin")} tabIndex="1">
             <h3>Trang chủ</h3>
             <RiHomeLine />
           </Link>
-          <Link onClick={() => navigate("/teacher")}>
+          <Link onClick={() => navigate("/teacher")} tabIndex="1">
             <h3>Giáo viên</h3>
             <GiTeacher />
           </Link>
-          <Link onClick={() => navigate("/student")}>
+          <Link onClick={() => navigate("/student")} tabIndex="1">
             <h3>Sinh viên</h3>
             <FaUserAlt />
           </Link>
-          <Link onClick={() => navigate("/courses")}>
+          <Link onClick={() => navigate("/courses")} tabIndex="1">
             <h3>Khoá học</h3>
             <RiFileCopyLine />
           </Link>
-          <Link onClick={() => navigate("/tests")}>
+          <Link onClick={() => navigate("/tests")} tabIndex="1">
             <h3>Bài thi</h3>
             <FaWallet />
           </Link>
-          <Link onClick={() => navigate("/bank-questions")}>
+          <Link onClick={() => navigate("/bank-questions")} tabIndex="1">
             <h3>Ngân hàng câu hỏi</h3>
             <RiBankFill />
           </Link>

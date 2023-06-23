@@ -46,6 +46,7 @@ const ResultDetails = () => {
   const code = localStorage.getItem("code");
   const score = localStorage.getItem("score");
   const name = localStorage.getItem("test");
+  const count = localStorage.getItem("count");
   return (
     <Container>
       <Card>
@@ -54,6 +55,7 @@ const ResultDetails = () => {
           <Code>Mã sinh viên: {code}</Code>
           <Name>Bài thi: {name}</Name>
           <Score>Điểm của bạn là: {score}</Score>
+          <div>Tổng số câu hỏi bài thi: {count}</div>
         </Content>
       </Card>
     </Container>

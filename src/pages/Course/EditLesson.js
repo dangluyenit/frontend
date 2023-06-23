@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -70,21 +71,27 @@ const Button = styled.button`
 const Tr = styled.tr``;
 const Th = styled.th``;
 const Td = styled.td``;
-const EditCourse = () => {
+const EditLesson = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const code = localStorage.getItem("code");
   const [values, setValues] = useState({
     name: "",
+    content: "",
+    image: "",
+    video: "",
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/v1/courses/${id}`)
+      .get(`http://localhost:4000/api/v1/lessons/${id}`)
       .then((response) => {
         console.log(response);
         setValues({
           ...values,
           name: response.data.metadata.name,
+          content: response.data.metadata.content,
+          image: response.data.metadata.image,
+          video: response.data.metadata.video,
         });
       })
       .catch((error) => {
@@ -96,10 +103,10 @@ const EditCourse = () => {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:4000/api/v1/courses/${id}`, values)
+      .put(`http://localhost:4000/api/v1/lessons/${id}`, values)
       .then((response) => {
         console.log(response);
-        navigate("/course");
+        navigate(`/course`);
       })
       .catch((error) => {
         console.log(error);
@@ -108,20 +115,40 @@ const EditCourse = () => {
   return (
     <Container>
       <Table>
-        <Title>Chỉnh sửa khoá học</Title>
+        <Title>Chỉnh sửa bài học</Title>
         <Tr>
           <Th>Mã giáo viên</Th>
           <Td>: </Td>
           <input type="text" placeholder="Mã giáo viên" value={code} readOnly />
         </Tr>
         <Tr>
-          <Th>Tên khoá học</Th>
+          <Th>Tên bài học</Th>
           <Td>: </Td>
           <input
             type="text"
-            placeholder="Tên khoá học"
+            placeholder="Tên bài học"
             value={values.name}
             onChange={(e) => setValues({ ...values, name: e.target.value })}
+          />
+        </Tr>
+        <Tr>
+          <Th>Nội dung bài học</Th>
+          <Td>: </Td>
+          <input
+            type="text"
+            placeholder="Nội dung bài học"
+            value={values.content}
+            onChange={(e) => setValues({ ...values, content: e.target.value })}
+          />
+        </Tr>
+        <Tr>
+          <Th>Video</Th>
+          <Td>: </Td>
+          <input
+            type="text"
+            placeholder="Video"
+            value={values.video}
+            onChange={(e) => setValues({ ...values, video: e.target.value })}
           />
         </Tr>
         <Button onClick={handleUpdate}>Hoàn thành</Button>
@@ -130,4 +157,4 @@ const EditCourse = () => {
   );
 };
 
-export default EditCourse;
+export default EditLesson;

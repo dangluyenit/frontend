@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonEdit, Card, Container, Image, Title } from "./styles";
+import {
+  Button,
+  ButtonEdit,
+  Card,
+  Container,
+  Image,
+  Title,
+  TitleCourse,
+} from "./styles";
 import { useNavigate } from "react-router-dom";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { FaRegEdit } from "react-icons/fa";
@@ -23,7 +31,7 @@ const Course = () => {
 
   return (
     <Container>
-      <Title>Khoá học</Title>
+      <TitleCourse>Khoá học</TitleCourse>
       {course.map((post) => (
         <Card key={post.id}>
           {localStorage.getItem("role") === "TEACHER" ? (

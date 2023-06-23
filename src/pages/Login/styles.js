@@ -45,7 +45,7 @@ export const Button = styled.button`
   transition: 0.3s ease-in-out;
   cursor: pointer;
   :hover {
-    letter-spacing: 2px;
+    transform: scale(0.9);
   }
   :active {
     transform: scale(0.95);

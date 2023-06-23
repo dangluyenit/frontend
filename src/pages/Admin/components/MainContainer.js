@@ -32,7 +32,7 @@ const Container = styled.div`
   border-bottom-right-radius: 2rem;
   border-top-right-radius: 2rem;
   margin: 1rem 8rem 1rem 4rem;
-  height: 100vh;
+  height: 100% !important;
 `;
 const SubContainer = styled.div`
   margin: 0.5rem 0;

@@ -6,7 +6,7 @@ import { btnReset, v } from "../../styles/variables";
 export const SSidebar = styled.div`
   width: ${({ isOpen }) => (!isOpen ? `auto` : v.sidebarWidth)};
   background: ${({ theme }) => theme.bg};
-  height: 100vh;
+  height: 100vh !important;
   padding: ${v.lgSpacing};
   position: relative;
 `;
@@ -84,6 +84,20 @@ export const SBtLogout = styled.div`
   display: flex;
   svg {
     font-size: 20px;
+  }
+`;
+export const SBtHistory = styled.div`
+  cursor: pointer;
+  width: max-content;
+  padding: ${v.smSpacing} ${v.mdSpacing};
+  display: flex;
+  gap: 10px;
+  border-radius: ${v.borderRadius};
+  svg {
+    font-size: 20px;
+  }
+  :focus {
+    background: rgb(230, 230, 230);
   }
 `;
 export const SDivider = styled.div`

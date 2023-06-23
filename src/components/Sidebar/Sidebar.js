@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
+  SBtHistory,
   SBtLogin,
   SBtLogout,
   SDivider,
@@ -26,7 +27,11 @@ import {
   AiOutlineLogin,
   AiOutlineLogout,
 } from "react-icons/ai";
-import { BsCalendar2EventFill, BsPeople } from "react-icons/bs";
+import {
+  BsCalendar2EventFill,
+  BsPeople,
+  BsQuestionSquare,
+} from "react-icons/bs";
 
 import { ThemeContext } from "./../../App";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -64,6 +69,22 @@ const Sidebar = () => {
           </SLink>
         </SLinkContainer>
       ))}
+      {localStorage.getItem("role") === "STUDENT" ? (
+        <SBtHistory tabIndex="0" onClick={() => navigate("/result")}>
+          <BsCalendar2EventFill />
+          {sidebarOpen && <>Lịch sử bài thi</>}
+        </SBtHistory>
+      ) : (
+        ""
+      )}
+      {localStorage.getItem("role") === "TEACHER" ? (
+        <SBtHistory tabIndex="0" onClick={() => navigate("/test/addquestion")}>
+          <BsQuestionSquare />
+          {sidebarOpen && <>Câu hỏi</>}
+        </SBtHistory>
+      ) : (
+        ""
+      )}
       <SDivider />
       {localStorage.getItem("token") ? (
         <SBtLogout
@@ -117,11 +138,11 @@ const linksArray = [
     icon: <AiOutlineFileText />,
     to: "/test",
   },
-  {
-    label: "Lịch sử làm bài",
-    icon: <BsCalendar2EventFill />,
-    to: "/result",
-  },
+  // {
+  //   label: "Câu hỏi",
+  //   icon: <BsQuestionSquare />,
+  //   to: "/test/addquestion",
+  // },
 ];
 
 export default Sidebar;

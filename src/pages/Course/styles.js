@@ -13,7 +13,7 @@ export const Card = styled.div`
   padding: 20px;
   margin-top: 100px;
   background: transparent;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
 `;
 export const Links = styled.button`
@@ -46,13 +46,21 @@ export const Title = styled.h2`
   text-align: center;
   color: ${({ theme }) => theme.text};
 `;
-
+export const TitleCourse = styled.h2`
+  width: max-content;
+  height: 100%;
+  font-size: 25px;
+  color: ${({ theme }) => theme.text};
+  position: absolute;
+  top: 0;
+  left: 50vw;
+`;
 export const Image = styled.div`
   width: 250px;
   height: 25vh;
   border: 10px solid white;
   box-shadow: 1px 1px 20px #000;
-  border-radius: 30px;
+  border-radius: 20px;
   background: linear-gradient(to left, #6666ff, #9933ff) right;
 
   :hover {
@@ -111,9 +119,9 @@ export const ButtonEdit = styled.button`
   border-radius: 20px;
   border: 1px solid #4bb6b7;
   background-color: #4bb6b7;
-  color: ${({ theme }) => theme.button};
+  color: #fff;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 700;
   margin: 15px;
   width: max-content;
   padding: 12px 20px;
@@ -122,9 +130,9 @@ export const ButtonEdit = styled.button`
   cursor: pointer;
   transform: translateX(50px);
   :hover {
-    opacity: 0.5;
+    color: black;
   }
   svg {
-    font-size: 10px;
+    font-size: 15px;
   }
 `;

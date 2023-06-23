@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "./slide.css";
 // import { AnimatePresence, motion } from "framer-motion";
 // import { images } from "../../assets/index";
-import img from "../../assets/technology.gif";
+import img from "../../assets/techcompany.gif";
 const Container = styled.div`
   display: flex;
   height: 100vh;

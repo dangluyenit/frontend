@@ -5,10 +5,12 @@ import {
   ButtonClearn,
   ButtonSubmit,
   Container,
+  CountQuestion,
   Input,
   Question,
   QuestionSection,
   QuestionText,
+  TestTitle,
   Timer,
 } from "./styles";
 import axios from "axios";
@@ -23,6 +25,7 @@ const TestDetails = () => {
     const { value, checked } = event.target;
     if (checked) {
       setCheckValues((pre) => [...pre, value]);
+      console.log({ checkValues });
     }
   }
   const formatTime = (time) => {
@@ -77,7 +80,9 @@ const TestDetails = () => {
         )
           .then((res) => {
             const temp = [];
+            console.log(res);
             res.map((questionAndAnswer) => {
+              console.log(questionAndAnswer);
               return temp.push({
                 question: questionAndAnswer.data.metadata.content,
                 answers: questionAndAnswer.data.metadata.questionAnswers,
@@ -100,6 +105,7 @@ const TestDetails = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("test", response.data.metadata.name);
+        localStorage.setItem("count", response.data.metadata.quantityQuestion);
         setCountDown(response.data.metadata.examDuration);
       })
       .catch((error) => {
@@ -129,9 +135,12 @@ const TestDetails = () => {
         console.log(error);
       });
   }
-
+  const title = localStorage.getItem("test");
+  const count = localStorage.getItem("count");
   return (
     <Container>
+      <TestTitle>Tên bài thi : {title}</TestTitle>
+      <CountQuestion>Số lượng câu hỏi : {count}</CountQuestion>
       <Question>
         <QuestionSection>
           {listQuestionAndAnswer.map((data) => (

@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 85vw;
-  height: 90vh;
+  height: 95vh;
   display: grid;
   justify-content: center;
   align-items: center;
   position: relative;
-  left: 3%;
+  left: 1%;
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 5px;
